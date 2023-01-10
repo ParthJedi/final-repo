@@ -34,7 +34,7 @@ function RightContent() {
 		} else return true;
 	}
 	return (
-		<Col>
+		<Col className='right-content-block'>
 			<div style={{ textAlign: 'justify' }}>
 				<h1>Welcome back!</h1>
 				<p>Please enter your login details.</p>
@@ -52,11 +52,9 @@ function RightContent() {
 					</Form.Item>
 
 					<Form.Item className='hp-mt-16 hp-mb-8'>
-						{/* <Link to='/'> */}
 						<Button type='primary' htmlType='submit' onClick={registerUser}>
 							Sign In
 						</Button>
-						{/* </Link> */}
 					</Form.Item>
 				</Form>
 				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>

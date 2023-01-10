@@ -5,7 +5,7 @@ import PraktikaLogo from '../../Logo';
 
 function LeftContent() {
 	return (
-		<Row className='hp-image-row hp-h-100 hp-pb-md-32'>
+		<Row>
 			<Col
 				className='hp-logo-item'
 				style={{ width: '150px', height: 'auto', margin: '2em' }}

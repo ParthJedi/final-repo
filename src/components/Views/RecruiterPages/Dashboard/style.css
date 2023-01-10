@@ -1,0 +1,19 @@
+#praktika-logo {
+	width: 15em;
+	padding: 2em;
+}
+
+.ant-layout-sider-children {
+	background-color: white;
+	border-right: 1px solid lightgray;
+	height: 500px;
+	min-height: 100vh;
+}
+
+.ant-layout-header {
+	background-color: white;
+}
+
+.header-icon {
+	margin-right: 1em;
+}
