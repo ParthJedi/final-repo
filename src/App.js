@@ -1,19 +1,15 @@
 import './App.css';
-import { Col, Row } from 'antd';
 import React from 'react';
-import LeftContent from './components/LandingPage/LeftContent';
-import RightContent from './components/LandingPage/RightContent';
+import LandingPage from './components/LandingPage';
+import LoginPage from './components/LoginPage';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
-		<Row>
-			<Col span={12}>
-				<LeftContent />
-			</Col>
-			<Col span={12}>
-				<RightContent />
-			</Col>
-		</Row>
+		<Routes>
+			<Route path='/' element={<LandingPage />} />
+			<Route path='/login' element={<LoginPage />} />
+		</Routes>
 	);
 }
 

@@ -18,4 +18,14 @@ export default class API {
 			return Promise.resolve(null);
 		}
 	}
+
+	static async loginUser(loginData) {
+		try {
+			const data = await apiClient.post(`/login`, loginData);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
 }

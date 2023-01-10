@@ -22,7 +22,7 @@ function RightContent() {
 		if (validateForm(registerData)) {
 			API.registerUser(registerData)
 				.then(({ data, status }) => {
-					if (status == 200) {
+					if (status === 200) {
 						console.log('RespData', data);
 					}
 				})
@@ -32,10 +32,10 @@ function RightContent() {
 
 	function validateForm(registerData) {
 		if (
-			registerData.role_id == '' ||
-			registerData.email == '' ||
-			registerData.password == '' ||
-			registerData.mobile_no == ''
+			registerData.role_id === '' ||
+			registerData.email === '' ||
+			registerData.password === '' ||
+			registerData.mobile_no === ''
 		) {
 			alert('Please fill all the fields correctly!');
 			return false;
@@ -82,12 +82,9 @@ function RightContent() {
 				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>
 					Already have an account?{' '}
 				</span>
-				{/* <Link
-					className='hp-text-color-primary-1 hp-text-color-dark-primary-2 hp-caption'
-					to='/pages/authentication/register'
-				> */}
-				Sign in here
-				{/* </Link> */}
+				<Link to='/login' style={{ color: 'blue' }}>
+					Sign in here
+				</Link>
 			</div>
 		</Col>
 	);
