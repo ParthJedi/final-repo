@@ -11,7 +11,7 @@ function DashboardContent() {
 				<Col span={8}>
 					<Card
 						title='Interviews today'
-						extra={<a href='#'>More</a>}
+						// extra={<a href='#'>More</a>}
 						style={{
 							width: 250
 						}}
@@ -24,7 +24,7 @@ function DashboardContent() {
 				<Col span={8}>
 					<Card
 						title='Pending interview'
-						extra={<a href='#'>More</a>}
+						// extra={<a href='#'>More</a>}
 						style={{
 							width: 250
 						}}
@@ -37,7 +37,7 @@ function DashboardContent() {
 				<Col span={8}>
 					<Card
 						title='Available Vacancy'
-						extra={<a href='#'>More</a>}
+						// extra={<a href='#'>More</a>}
 						style={{
 							width: 250
 						}}
