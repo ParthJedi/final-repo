@@ -1,9 +1,10 @@
 import React from 'react';
 import { Col, Form, Input, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
 
 function RightContent() {
+	const navigate = useNavigate();
 	function registerUser(e) {
 		e.preventDefault();
 		let signinForm = document.forms['signin-form'];
@@ -16,11 +17,11 @@ function RightContent() {
 		};
 
 		if (validateForm(loginData)) {
-			API.registerUser(loginData)
+			API.loginUser(loginData)
 				.then(({ data, status }) => {
-					if (status === 200) {
-						console.log('RespData', data);
-					}
+					if (status === 200 && data.status === 1) {
+						navigate('/dashboard');
+					} else navigate('/');
 				})
 				.catch((err) => console.log('e', err));
 		}
