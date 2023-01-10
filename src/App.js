@@ -4,7 +4,7 @@ import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import PageNotFound from './components/PageNotFound';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Views/RecruiterPages/Dashboard';
+import Dashboard from './components/Views/RecruiterViews/Dashboard';
 
 function App() {
 	return (
