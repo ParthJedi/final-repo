@@ -36,7 +36,7 @@ function CompanyProfile({ updateRender }) {
 						updateRender('5');
 					}}
 				>
-					<Form layout='vertical'>
+					<Form layout='vertical' className='company-form'>
 						<Divider>
 							<h1>Company Profile</h1>
 							<h6>Add your company details like Name, Size, etc</h6>

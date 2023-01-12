@@ -21,6 +21,6 @@
 	margin: 2em;
 }
 
-.ant-form-item-label {
+#vacancy-form-div .ant-form-item-label {
 	text-align: center !important;
 }

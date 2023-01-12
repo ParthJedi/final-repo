@@ -35,6 +35,8 @@ function Vacancies({ updateRender }) {
 							errors.company_name = 'Required';
 						} else if (values.skills.length === 0) {
 							errors.skills = 'Required';
+						} else if (!values.exp_level) {
+							errors.exp_level = 'Required';
 						}
 						return errors;
 					}}
