@@ -1,0 +1,26 @@
+#vacancy-form-div {
+	padding: '1em';
+	background-color: 'white';
+	text-align: center;
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+	max-width: 30em;
+}
+
+.vacancy-form-div input {
+	max-width: 30em;
+}
+
+.button-actions-div {
+	position: relative;
+}
+
+.button-actions-div button {
+	margin: 2em;
+}
+
+.ant-form-item-label {
+	text-align: center !important;
+}

@@ -17,7 +17,7 @@ function PageLayout() {
 	const components = {
 		'1': <DashboardContent />,
 		'2': <CompanyProfile updateRender={updateRender} />,
-		'3': <Vacancies />,
+		'3': <Vacancies updateRender={updateRender} />,
 		'4': <Candidates />,
 		'5': <FinalCompanyPage />
 	};
