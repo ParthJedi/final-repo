@@ -1,10 +1,10 @@
 import React from 'react';
-import { NotificationOutlined } from '@ant-design/icons';
+import BellIcon from '../../../../../assets/images/logo/bell.png';
 
 function HeaderNotifications() {
 	return (
 		<div>
-			<NotificationOutlined />
+			<img src={BellIcon} style={{ width: '2em', marginTop: '2em' }} />
 		</div>
 	);
 }

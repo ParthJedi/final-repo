@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card, FloatButton } from 'antd';
 import VacancyTable from './VacancyTable';
 import UpcomingInterviews from './UpcomingInterviews';
 
@@ -57,6 +57,7 @@ function DashboardContent() {
 					<UpcomingInterviews />
 				</Col>
 			</Row>
+			<FloatButton.BackTop />
 		</>
 	);
 }

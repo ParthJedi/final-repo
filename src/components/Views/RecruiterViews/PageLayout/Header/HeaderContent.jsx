@@ -12,7 +12,7 @@ function HeaderContent() {
 
 				<Col>
 					<Row align='middle'>
-						<div className='header-icon'>
+						<div style={{ marginRight: '10px' }}>
 							<HeaderSearch />
 						</div>
 						<div className='header-icon'>
@@ -29,7 +29,7 @@ function HeaderContent() {
 
 	return (
 		<>
-			<Row justify='center' className='hp-w-100'>
+			<Row justify='center'>
 				<Col span={24}>{headerChildren()}</Col>
 			</Row>
 		</>
