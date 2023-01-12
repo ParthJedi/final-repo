@@ -5,7 +5,7 @@ import { Divider } from 'antd';
 import './style.css';
 const { TextArea } = Input;
 
-function CompanyProfile() {
+function CompanyProfile({ updateRender }) {
 	return (
 		<>
 			<div id='comapny-prof-form-div'>
@@ -22,7 +22,19 @@ function CompanyProfile() {
 						company_facebook: '',
 						company_glassdoor: ''
 					}}
-					onSubmit={(values) => console.log('jackkkk!', values)}
+					validate={(values) => {
+						const errors = {};
+						if (!values.company_name) {
+							errors.company_name = 'Required';
+						} else if (!values.company_website) {
+							errors.company_name = 'Required';
+						}
+						return errors;
+					}}
+					onSubmit={(values) => {
+						console.log('jackkkk!', values);
+						updateRender('5');
+					}}
 				>
 					<Form layout='vertical'>
 						<Divider>
@@ -31,6 +43,7 @@ function CompanyProfile() {
 						</Divider>
 
 						<Form.Item label='Company Name:' name='company_name'>
+							<span style={{ color: 'red', fontSize: '2em' }}>*</span>
 							<Input name='company_name' />
 						</Form.Item>
 						<Form.Item label='Company Size:' name='company_size'>
@@ -57,6 +70,7 @@ function CompanyProfile() {
 							<h6>Add your company website and other links</h6>
 						</Divider>
 						<Form.Item label='Website:' name='company_website'>
+							<span style={{ color: 'red', fontSize: '2em' }}>*</span>
 							<Input name='company_website' />
 						</Form.Item>
 						<Form.Item label='LinkedIn:' name='company_linkedin'>

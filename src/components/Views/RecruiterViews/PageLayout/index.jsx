@@ -7,6 +7,7 @@ import SidebarContent from './Sidebar';
 import CompanyProfile from '../CompanyProfile';
 import Vacancies from '../Vacancies';
 import Candidates from '../Candidates';
+import FinalCompanyPage from '../CompanyProfile/FinalCompanyPage';
 
 const { Header, Sider, Content } = Layout;
 
@@ -15,9 +16,10 @@ function PageLayout() {
 
 	const components = {
 		'1': <DashboardContent />,
-		'2': <CompanyProfile />,
+		'2': <CompanyProfile updateRender={updateRender} />,
 		'3': <Vacancies />,
-		'4': <Candidates />
+		'4': <Candidates />,
+		'5': <FinalCompanyPage />
 	};
 
 	return (
