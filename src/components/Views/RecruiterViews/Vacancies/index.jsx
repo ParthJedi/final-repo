@@ -40,7 +40,7 @@ function Vacancies({ updateRender }) {
 					}}
 					onSubmit={(values) => {
 						console.log('jackkkk!', values);
-						updateRender('1');
+						updateRender('6');
 					}}
 				>
 					<Form layout='vertical'>

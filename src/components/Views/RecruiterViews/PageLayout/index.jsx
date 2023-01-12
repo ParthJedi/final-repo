@@ -8,6 +8,7 @@ import CompanyProfile from '../CompanyProfile';
 import Vacancies from '../Vacancies';
 import Candidates from '../Candidates';
 import FinalCompanyPage from '../CompanyProfile/FinalCompanyPage';
+import FinalVacancyListings from '../Vacancies/FinalVacancyListings';
 
 const { Header, Sider, Content } = Layout;
 
@@ -19,7 +20,8 @@ function PageLayout() {
 		'2': <CompanyProfile updateRender={updateRender} />,
 		'3': <Vacancies updateRender={updateRender} />,
 		'4': <Candidates />,
-		'5': <FinalCompanyPage />
+		'5': <FinalCompanyPage />,
+		'6': <FinalVacancyListings />
 	};
 
 	return (
