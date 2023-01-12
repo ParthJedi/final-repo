@@ -61,7 +61,7 @@ function RightContent() {
 					name='signup-form'
 					initialValues={{ remember: true }}
 				>
-					<p className='hp-mt-sm-0 hp-mt-8 hp-text-color-black-60'>
+					<p>
 						Who are you?&nbsp;&nbsp;&nbsp;
 						<Radio.Group name='role_id'>
 							<Radio value='2'>Recruiter</Radio>
@@ -69,19 +69,19 @@ function RightContent() {
 						</Radio.Group>
 					</p>
 
-					<Form.Item label='Email address :' className='hp-mb-16'>
+					<Form.Item label='Email address :'>
 						<Input name='email' />
 					</Form.Item>
 
-					<Form.Item label='Password :' className='hp-mb-8'>
+					<Form.Item label='Password :'>
 						<Input.Password name='password' />
 					</Form.Item>
 
-					<Form.Item label='Mobile number :' className='hp-mb-16'>
+					<Form.Item label='Mobile number :'>
 						<Input name='mobile_no' />
 					</Form.Item>
 
-					<Form.Item className='hp-mt-16 hp-mb-8'>
+					<Form.Item>
 						<Button type='primary' htmlType='submit' onClick={registerUser}>
 							Get Started
 						</Button>
@@ -90,9 +90,7 @@ function RightContent() {
 						</span>
 					</Form.Item>
 				</Form>
-				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>
-					Already have an account?{' '}
-				</span>
+				<span>Already have an account? </span>
 				<Link to='/login' style={{ color: 'blue' }}>
 					Sign in here
 				</Link>

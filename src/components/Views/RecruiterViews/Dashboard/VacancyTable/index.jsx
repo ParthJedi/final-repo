@@ -33,21 +33,21 @@ const data = [
 		experience: '5 years'
 	},
 	{
-		key: 1,
+		key: 2,
 		id: 2,
 		jobTitle: 'Full Stack Developer',
 		vacancies: 10,
 		experience: '10 years'
 	},
 	{
-		key: 1,
+		key: 3,
 		id: 3,
 		jobTitle: 'Full Stack Developer',
 		vacancies: 10,
 		experience: '15 years'
 	},
 	{
-		key: 1,
+		key: 4,
 		id: 4,
 		jobTitle: 'Full Stack Developer',
 		vacancies: 10,

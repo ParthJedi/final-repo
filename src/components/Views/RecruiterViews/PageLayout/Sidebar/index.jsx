@@ -6,11 +6,9 @@ import {
 	UserSwitchOutlined,
 	UsergroupAddOutlined
 } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
 import PraktikaLogo from '../../../../Logo/index';
 
 function SidebarContent({ updateRender }) {
-	const navigate = useNavigate();
 	return (
 		<>
 			<PraktikaLogo />
