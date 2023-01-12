@@ -7,10 +7,6 @@ function RightContent() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 
-	const toggle = (checked) => {
-		setLoading(checked);
-	};
-
 	function registerUser(e) {
 		e.preventDefault();
 		let signinForm = document.forms['signin-form'];

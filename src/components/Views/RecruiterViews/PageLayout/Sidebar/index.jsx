@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import PraktikaLogo from '../../../../Logo/index';
 
-function SidebarContent() {
+function SidebarContent({ updateRender }) {
 	const navigate = useNavigate();
 	return (
 		<>
@@ -23,25 +23,25 @@ function SidebarContent() {
 						key: '1',
 						icon: <MenuFoldOutlined />,
 						label: 'Dashboard',
-						onClick: () => navigate('/dashboard')
+						onClick: () => updateRender('1')
 					},
 					{
 						key: '2',
 						icon: <UserSwitchOutlined />,
 						label: 'Company Profile',
-						onClick: () => navigate('/company-profile')
+						onClick: () => updateRender('2')
 					},
 					{
 						key: '3',
 						icon: <UploadOutlined />,
 						label: 'Vacancies',
-						onClick: () => navigate('/vacancies')
+						onClick: () => updateRender('3')
 					},
 					{
 						key: '4',
 						icon: <UsergroupAddOutlined />,
 						label: 'Candidates',
-						onClick: () => navigate('/candidates')
+						onClick: () => updateRender('4')
 					}
 				]}
 			/>
