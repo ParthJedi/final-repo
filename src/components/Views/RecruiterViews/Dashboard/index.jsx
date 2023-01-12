@@ -1,29 +1,64 @@
 import React from 'react';
-import './style.css';
-import HeaderContent from './Header/HeaderContent';
-import { Layout } from 'antd';
-import DashboardContent from './Content';
-import SidebarContent from './Sidebar';
-const { Header, Sider, Content } = Layout;
+import { Row, Col, Card } from 'antd';
+import VacancyTable from './VacancyTable';
+import UpcomingInterviews from './UpcomingInterviews';
 
-function Dashboard() {
+function DashboardContent() {
 	return (
 		<>
-			<Layout>
-				<Sider collapsible={false}>
-					<SidebarContent />
-				</Sider>
-				<Layout>
-					<Header style={{ backgroundColor: 'white' }}>
-						<HeaderContent />
-					</Header>
-					<Content>
-						<DashboardContent />
-					</Content>
-				</Layout>
-			</Layout>
+			<h1>Dashboard</h1>
+			<Row>
+				<Col span={8}>
+					<Card
+						title='Interviews today'
+						// extra={<a href='#'>More</a>}
+						style={{
+							width: 250
+						}}
+					>
+						<p>Card content</p>
+						<p>Card content</p>
+						<p>Card content</p>
+					</Card>
+				</Col>
+				<Col span={8}>
+					<Card
+						title='Pending interview'
+						// extra={<a href='#'>More</a>}
+						style={{
+							width: 250
+						}}
+					>
+						<p>Card content</p>
+						<p>Card content</p>
+						<p>Card content</p>
+					</Card>
+				</Col>
+				<Col span={8}>
+					<Card
+						title='Available Vacancy'
+						// extra={<a href='#'>More</a>}
+						style={{
+							width: 250
+						}}
+					>
+						<p>Card content</p>
+						<p>Card content</p>
+						<p>Card content</p>
+					</Card>
+				</Col>
+			</Row>
+			<br />
+			<Row>
+				<Col span={12}>
+					<VacancyTable />
+				</Col>
+				<Col span={12}>
+					<UpcomingInterviews />
+				</Col>
+			</Row>
 		</>
 	);
 }
 
-export default Dashboard;
+export default DashboardContent;

@@ -1,15 +1,23 @@
-import React from 'react';
-import { Col, Form, Input, Button } from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, Button, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
 
 function RightContent() {
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
+
+	const toggle = (checked) => {
+		setLoading(checked);
+	};
+
 	function registerUser(e) {
 		e.preventDefault();
 		let signinForm = document.forms['signin-form'];
 		let email = signinForm['email'].value;
 		let password = signinForm['password'].value;
+
+		setLoading(true);
 
 		const loginData = {
 			email,
@@ -21,9 +29,12 @@ function RightContent() {
 				.then(({ data, status }) => {
 					if (status === 200 && data.status === 1) {
 						navigate('/dashboard');
-					} else navigate('/');
+					} else navigate('/login');
 				})
-				.catch((err) => console.log('e', err));
+				.catch((err) => {
+					console.log('e', err);
+					navigate('/login');
+				});
 		}
 	}
 
@@ -51,10 +62,13 @@ function RightContent() {
 						<Input.Password name='password' />
 					</Form.Item>
 
-					<Form.Item className='hp-mt-16 hp-mb-8'>
+					<Form.Item>
 						<Button type='primary' htmlType='submit' onClick={registerUser}>
 							Sign In
 						</Button>
+						<span style={{ marginLeft: '1em' }}>
+							<Spin spinning={loading} size='large' />
+						</span>
 					</Form.Item>
 				</Form>
 				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>

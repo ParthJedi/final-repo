@@ -1,10 +1,16 @@
-import React from 'react';
-import { Col, Form, Input, Button, Radio } from 'antd';
+import React, { useState } from 'react';
+import { Col, Form, Input, Button, Radio, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
 
 function RightContent() {
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
+
+	const toggle = (checked) => {
+		setLoading(checked);
+	};
+
 	function registerUser(e) {
 		e.preventDefault();
 		let signupForm = document.forms['signup-form'];
@@ -20,6 +26,8 @@ function RightContent() {
 			role_id
 		};
 
+		setLoading(true);
+
 		if (validateForm(registerData)) {
 			API.registerUser(registerData)
 				.then(({ data, status }) => {
@@ -29,7 +37,10 @@ function RightContent() {
 						} else navigate('/');
 					}
 				})
-				.catch((err) => console.log('e', err));
+				.catch((err) => {
+					console.log('e', err);
+					navigate('/');
+				});
 		}
 	}
 
@@ -78,6 +89,9 @@ function RightContent() {
 						<Button type='primary' htmlType='submit' onClick={registerUser}>
 							Get Started
 						</Button>
+						<span style={{ marginLeft: '1em' }}>
+							<Spin spinning={loading} size='large' />
+						</span>
 					</Form.Item>
 				</Form>
 				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>

@@ -5,8 +5,7 @@ const columns = [
 	{
 		title: '#',
 		dataIndex: 'id',
-		key: 'id',
-		render: (text) => <a>{text}</a>
+		key: 'id'
 	},
 	{
 		title: 'Job Title / Role',
@@ -61,7 +60,6 @@ function VacancyTable() {
 		<>
 			<Card
 				title='Pending Vacancies'
-				// extra={<a href='#'>More</a>}
 				style={{
 					width: '95%'
 				}}
@@ -73,7 +71,6 @@ function VacancyTable() {
 					// pagination={{
 					// 	position: [top, bottom]
 					// }}
-					// title={('Vacancy Table') =>'Vacancy Table'}
 				/>
 			</Card>
 		</>

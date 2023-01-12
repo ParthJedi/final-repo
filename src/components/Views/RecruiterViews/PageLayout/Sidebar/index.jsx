@@ -6,9 +6,11 @@ import {
 	UserSwitchOutlined,
 	UsergroupAddOutlined
 } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
 import PraktikaLogo from '../../../../Logo/index';
 
 function SidebarContent() {
+	const navigate = useNavigate();
 	return (
 		<>
 			<PraktikaLogo />
@@ -20,22 +22,26 @@ function SidebarContent() {
 					{
 						key: '1',
 						icon: <MenuFoldOutlined />,
-						label: 'Dashboard'
+						label: 'Dashboard',
+						onClick: () => navigate('/dashboard')
 					},
 					{
 						key: '2',
 						icon: <UserSwitchOutlined />,
-						label: 'Company Profile'
+						label: 'Company Profile',
+						onClick: () => navigate('/company-profile')
 					},
 					{
 						key: '3',
 						icon: <UploadOutlined />,
-						label: 'Vacancies'
+						label: 'Vacancies',
+						onClick: () => navigate('/vacancies')
 					},
 					{
 						key: '4',
 						icon: <UsergroupAddOutlined />,
-						label: 'Candidates'
+						label: 'Candidates',
+						onClick: () => navigate('/candidates')
 					}
 				]}
 			/>

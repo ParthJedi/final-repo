@@ -6,7 +6,6 @@ function UpcomingInterviews() {
 		<>
 			<Card
 				title='Upcoming Interviews'
-				// extra={<a href='#'>More</a>}
 				style={{
 					width: 250
 				}}
