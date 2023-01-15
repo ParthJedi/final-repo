@@ -28,4 +28,14 @@ export default class API {
 			return Promise.resolve(null);
 		}
 	}
+
+	static async getAllCities(stateId) {
+		try {
+			const data = await apiClient.get(`/cities/` + stateId);
+			return Promise.resolve(data.data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
 }

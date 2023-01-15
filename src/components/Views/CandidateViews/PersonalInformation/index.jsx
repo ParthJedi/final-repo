@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Select, ResetButton } from "formik-antd";
 import { Row, Col, Divider } from "antd";
+import API from '../../../../utils/API/api';
 // import './style.css';
 const { TextArea } = Input;
 
+
 function PersonalInformation({ updateRender }) {
+    const [cityOptions,setCityOptions] = useState([]);
+
+    const fetchCities = (stateId) => {
+        if(stateId) {
+            API.getAllCities(stateId)
+            .then(({ data, status }) => {
+                let options = data.map((key) => {
+                    return {
+                        label:key.name,
+                        value:key.id
+                    }
+                })
+                setCityOptions(options);
+            });
+        }
+    }
+
+    useEffect(()=>{
+        fetchCities();
+    },[])
+    
 	return (
 		<>
 			<Row className="candidate-form">
@@ -125,10 +148,10 @@ function PersonalInformation({ updateRender }) {
                                         }
                                         name="current_state"
                                     >
-                                        <Select name="current_state">
-                                            <Select.Option value="state-1">State 1</Select.Option>
-                                            <Select.Option value="state-2">State 2</Select.Option>
-                                            <Select.Option value="state-3">State 3</Select.Option>
+                                        <Select name="current_state" onSelect={(value, event) => fetchCities(value)}>
+                                            <Select.Option value="1">State 1</Select.Option>
+                                            <Select.Option value="2">State 2</Select.Option>
+                                            <Select.Option value="3">State 3</Select.Option>
                                         </Select>
                                     </Form.Item>
                                 </Col>
@@ -142,10 +165,8 @@ function PersonalInformation({ updateRender }) {
                                         }
                                         name="current_city"
                                     >
-                                        <Select name="current_city">
-                                            <Select.Option value="city-1">City 1</Select.Option>
-                                            <Select.Option value="city-2">City 2</Select.Option>
-                                            <Select.Option value="city-3">City 3</Select.Option>
+                                        <Select name="current_city" options={cityOptions}>
+                                            
                                         </Select>
                                     </Form.Item>
                                 </Col>
