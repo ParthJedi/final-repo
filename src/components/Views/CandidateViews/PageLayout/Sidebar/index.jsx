@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import {
 	MenuFoldOutlined,
 	//SolutionOutlined,
-	UserSwitchOutlined,
+	UserSwitchOutlined
 	// BankOutlined,
 	// FileOutlined,
 	// VideoCameraOutlined,
@@ -29,7 +29,7 @@ function SidebarContent({ updateRender }) {
 					{
 						icon: <UserSwitchOutlined />,
 						label: 'My Profile',
-						onClick: () => updateRender('2'),
+						onClick: () => updateRender('2')
 						// children: [
 						// 			{
 						// 				key: '2',
