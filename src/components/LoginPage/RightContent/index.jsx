@@ -24,7 +24,11 @@ function RightContent() {
 			API.loginUser(loginData)
 				.then(({ data, status }) => {
 					if (status === 200 && data.status === 1) {
-						navigate('/dashboard');
+						if (data.data.role_id && data.data.role_id == 1) {
+							navigate('/dashboard');
+						} else if (data.data.role_id && data.data.role_id == 2) {
+							navigate('/candidate');
+						}
 					} else navigate('/login');
 				})
 				.catch((err) => {

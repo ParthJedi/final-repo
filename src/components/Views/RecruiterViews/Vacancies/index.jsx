@@ -105,7 +105,7 @@ function Vacancies({ updateRender }) {
 							<span style={{ color: 'red', fontSize: '2em' }}>*</span>
 							<Input name='skills' />
 						</Form.Item>
-						<div class='button-actions-div'>
+						<div className='button-actions-div'>
 							<SubmitButton>Save</SubmitButton>
 							<ResetButton>Reset</ResetButton>
 						</div>

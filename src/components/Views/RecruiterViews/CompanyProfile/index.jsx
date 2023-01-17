@@ -2,37 +2,57 @@ import React from 'react';
 import { Form, Input, SubmitButton, ResetButton } from 'formik-antd';
 import { Formik } from 'formik';
 import { Divider } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
+import API from '../../../../utils/API/api';
 const { TextArea } = Input;
 
 function CompanyProfile({ updateRender }) {
+	const navigate = useNavigate();
+
+	function createCompanyProfile(companyData) {
+		console.log('function call with company data', companyData);
+		API.createCompany(companyData)
+			.then(({ data, status }) => {
+				if (status === 200 && Object.keys(data.data) && data.status === 1) {
+					console.log('success!', data);
+					return;
+				} else navigate('/dashboard');
+			})
+			.catch((err) => {
+				console.log('e', err);
+				navigate('/dashboard');
+			});
+	}
+
 	return (
 		<>
 			<div id='comapny-prof-form-div'>
 				<Formik
 					initialValues={{
-						company_name: '',
-						company_size: '',
-						company_industry: '',
-						company_overview: '',
-						company_values: '',
-						company_benefits: '',
-						company_website: '',
-						company_linkedin: '',
-						company_facebook: '',
-						company_glassdoor: ''
+						companyname: '',
+						companysize: '',
+						industry: '',
+						overview: '',
+						values: '',
+						benefits: '',
+						website: '',
+						linkedin: '',
+						facebook: '',
+						glassdoor: '',
+						crunchbase: ''
 					}}
 					validate={(values) => {
 						const errors = {};
-						if (!values.company_name) {
-							errors.company_name = 'Required';
-						} else if (!values.company_website) {
-							errors.company_name = 'Required';
+						if (!values.companyname) {
+							errors.companyname = 'Required';
+						} else if (!values.website) {
+							errors.companyname = 'Required';
 						}
 						return errors;
 					}}
 					onSubmit={(values) => {
-						console.log('jackkkk!', values);
+						createCompanyProfile(values);
 						updateRender('5');
 					}}
 				>
@@ -42,48 +62,51 @@ function CompanyProfile({ updateRender }) {
 							<h6>Add your company details like Name, Size, etc</h6>
 						</Divider>
 
-						<Form.Item label='Company Name:' name='company_name'>
+						<Form.Item label='Company Name:' name='companyname'>
 							<span style={{ color: 'red', fontSize: '2em' }}>*</span>
-							<Input name='company_name' />
+							<Input name='companyname' />
 						</Form.Item>
-						<Form.Item label='Company Size:' name='company_size'>
-							<Input name='company_size' />
+						<Form.Item label='Company Size:' name='companysize'>
+							<Input name='companysize' />
 						</Form.Item>
-						<Form.Item label='Industry:' name='company_industry'>
-							<Input name='company_industry' />
+						<Form.Item label='Industry:' name='industry'>
+							<Input name='industry' />
 						</Form.Item>
 						<Divider>
 							<h1>Overview</h1>
 							<h6>Add your company overview, values, culture etc</h6>
 						</Divider>
-						<Form.Item label='Overview:' name='company_overview'>
-							<TextArea rows={5} name='company_overview' />
+						<Form.Item label='Overview:' name='overview'>
+							<TextArea rows={5} name='overview' />
 						</Form.Item>
-						<Form.Item label='Values:' name='company_values'>
-							<TextArea rows={5} name='company_values' />
+						<Form.Item label='Values:' name='values'>
+							<TextArea rows={5} name='values' />
 						</Form.Item>
-						<Form.Item label='Benefits:' name='company_benefits'>
-							<TextArea rows={5} name='company_benefits' />
+						<Form.Item label='Benefits:' name='benefits'>
+							<TextArea rows={5} name='benefits' />
 						</Form.Item>
 						<Divider>
 							<h1>Social Links</h1>
 							<h6>Add your company website and other links</h6>
 						</Divider>
-						<Form.Item label='Website:' name='company_website'>
+						<Form.Item label='Website:' name='website'>
 							<span style={{ color: 'red', fontSize: '2em' }}>*</span>
-							<Input name='company_website' />
+							<Input name='website' />
 						</Form.Item>
-						<Form.Item label='LinkedIn:' name='company_linkedin'>
-							<Input name='company_linkedin' />
+						<Form.Item label='LinkedIn:' name='linkedin'>
+							<Input name='linkedin' />
 						</Form.Item>
-						<Form.Item label='Facebook:' name='company_facebook'>
-							<Input name='company_facebook' />
+						<Form.Item label='Facebook:' name='facebook'>
+							<Input name='facebook' />
 						</Form.Item>
-						<Form.Item label='Glassdoor:' name='company_glassdoor'>
-							<Input name='company_glassdoor' />
+						<Form.Item label='Glassdoor:' name='glassdoor'>
+							<Input name='glassdoor' />
 						</Form.Item>
-						<div class='button-actions-div'>
-							<SubmitButton>Save</SubmitButton>
+						<Form.Item label='CrunchBase:' name='crunchbase'>
+							<Input name='crunchbase' />
+						</Form.Item>
+						<div className='button-actions-div'>
+							<SubmitButton onSubmit={createCompanyProfile}>Save</SubmitButton>
 							<ResetButton>Reset</ResetButton>
 						</div>
 					</Form>
