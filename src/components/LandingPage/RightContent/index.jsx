@@ -27,11 +27,13 @@ function RightContent() {
 		if (validateForm(registerData)) {
 			API.registerUser(registerData)
 				.then(({ data, status }) => {
-					if (status === 200) {
-						if (status === 200 && data.status === 1) {
+					if (status === 200 && data.status === 1) {
+						if (data.data.role_id && data.data.role_id == 1) {
 							navigate('/dashboard');
-						} else navigate('/');
-					}
+						} else if (data.data.role_id && data.data.role_id == 2) {
+							navigate('/candidate');
+						}
+					} else navigate('/');
 				})
 				.catch((err) => {
 					console.log('e', err);
