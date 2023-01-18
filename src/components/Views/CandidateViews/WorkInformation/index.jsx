@@ -6,7 +6,7 @@ import { Row, Col, Divider } from "antd";
 function WorkInformation({ updateRender }) {
 	return (
 		<>
-			<Row className="candidate-form">
+			<Row className="work-information">
 				<Col span={24}>
 					<h2>Work Information</h2>
 					<p className="hp-p1-body hp-mb-0">

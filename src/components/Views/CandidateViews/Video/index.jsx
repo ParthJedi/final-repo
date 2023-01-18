@@ -6,7 +6,7 @@ import { message, Upload } from "antd";
 
 const { Dragger } = Upload;
 
-const props = {
+const videoProps = {
 	name: "file",
 	multiple: false,
 	accept: "video/mp4",
@@ -30,7 +30,7 @@ const props = {
 function Video({ updateRender }) {
 	return (
 		<>
-			<Row className="candidate-form">
+			<Row className="video">
 				<Col span={24}>
 					<h2>Upload your video introduction</h2>
 					<p className="hp-p1-body hp-mb-0">
@@ -41,7 +41,7 @@ function Video({ updateRender }) {
 				<Col span={24}>
 					<Row gutter={[16]}>
 						<Col md={24} span={24} style={{ marginBottom: "20px" }}>
-							<Dragger {...props}>
+							<Dragger {...videoProps}>
 								<p className="ant-upload-drag-icon">
 									<UploadOutlined />
 								</p>
