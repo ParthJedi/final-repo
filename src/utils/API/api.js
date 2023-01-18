@@ -33,7 +33,7 @@ export default class API {
 		console.log('ÄPI reached');
 		const config = {
 			headers: {
-				Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzAsImVtYWlsIjoiamFtZXNAcG90dGVyLmNvbSIsInJvbGVfaWQiOjIsImNvbXBhbnlfaWQiOjIsImlhdCI6MTY3Mzk4NTc1NywiZXhwIjoxNjc0MjAxNzU3fQ.KQFppCIhMOuhEkKDVo-Jd65jkKs5uInDFZmSwanh1Xg`
+				Authorization: `Bearer ${secretToken}`
 			}
 		};
 		try {
