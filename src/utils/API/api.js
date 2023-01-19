@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-	baseURL: `http://localhost:5000/`,
+	baseURL: `https://praktika.onrender.com/`,
 	timeout: 70000,
 	headers: {
 		'Api-Request-Version': 'bypass'
