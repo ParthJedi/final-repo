@@ -12,16 +12,16 @@ import FinalVacancyListings from '../Vacancies/FinalVacancyListings';
 
 const { Header, Sider, Content } = Layout;
 
-function PageLayout() {
+function RecruiterPageLayout() {
 	const [render, updateRender] = useState('1');
 
 	const components = {
-		'1': <DashboardContent />,
-		'2': <CompanyProfile updateRender={updateRender} />,
-		'3': <Vacancies updateRender={updateRender} />,
-		'4': <Candidates />,
-		'5': <FinalCompanyPage />,
-		'6': <FinalVacancyListings />
+		1: <DashboardContent />,
+		2: <CompanyProfile updateRender={updateRender} />,
+		3: <Vacancies updateRender={updateRender} />,
+		4: <Candidates />,
+		5: <FinalCompanyPage />,
+		6: <FinalVacancyListings />
 	};
 
 	return (
@@ -41,4 +41,4 @@ function PageLayout() {
 	);
 }
 
-export default PageLayout;
+export default RecruiterPageLayout;
