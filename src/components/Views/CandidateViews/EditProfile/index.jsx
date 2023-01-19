@@ -70,7 +70,9 @@ function EditProfile({ token }) {
 	const [formData, setFormData] = useState({});
 	const [countryOptions, setCountryOptions] = useState([]);
 	const [cityOptions, setCityOptions] = useState([]);
+	const [perCityOptions, setPerCityOptions] = useState([]);
 	const [stateOptions, setStateOptions] = useState([]);
+	const [perStateOptions, setPerStateOptions] = useState([]);
 
 	const fetchCountries = (token) => {
 		API.getAllCountries(token).then(({ data, status }) => {
@@ -84,7 +86,7 @@ function EditProfile({ token }) {
 		});
 	};
 
-	const fetchState = (countryId, token) => {
+	const fetchState = (countryId, token, permanent = false) => {
 		API.getAllSates(countryId, token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
@@ -92,20 +94,19 @@ function EditProfile({ token }) {
 					value: key.id
 				};
 			});
-			setStateOptions(options);
+			(permanent) ? setPerStateOptions(options) : setStateOptions(options);
 		});
 	};
 
-	const fetchCities = (stateId, token) => {
-		console.log(stateId, token);
-		API.getAllCities(stateId).then(({ data, status }) => {
+	const fetchCities = (stateId, token, permanent = false) => {
+		API.getAllCities(stateId, token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
 					value: key.id
 				};
 			});
-			setCityOptions(options);
+			(permanent) ? setPerCityOptions(options): setCityOptions(options);
 		});
 	};
 
@@ -313,7 +314,7 @@ function EditProfile({ token }) {
 													name='current_country'
 													style={{ marginRight: '10px' }}
 													options={countryOptions}
-													onSelect={(value, event) => fetchState(value)}
+													onSelect={(value, event) => fetchState(value, token)}
 												></Select>
 											</Form.Item>
 										</Col>
@@ -332,7 +333,7 @@ function EditProfile({ token }) {
 												<Select
 													name='current_state'
 													options={stateOptions}
-													onSelect={(value, event) => fetchCities(value)}
+													onSelect={(value, event) => fetchCities(value, token)}
 												></Select>
 											</Form.Item>
 										</Col>
@@ -419,16 +420,9 @@ function EditProfile({ token }) {
 												<Select
 													name='permanent_country'
 													style={{ marginRight: '10px' }}
+													options={countryOptions}
+													onSelect={(value, event) => fetchState(value, token, true)}
 												>
-													<Select.Option value='country-1'>
-														Country 1
-													</Select.Option>
-													<Select.Option value='country-2'>
-														Country 2
-													</Select.Option>
-													<Select.Option value='country-3'>
-														Country 3
-													</Select.Option>
 												</Select>
 											</Form.Item>
 										</Col>
@@ -444,10 +438,11 @@ function EditProfile({ token }) {
 												}
 												name='permanent_state'
 											>
-												<Select name='permanent_state'>
-													<Select.Option value='state-1'>State 1</Select.Option>
-													<Select.Option value='state-2'>State 2</Select.Option>
-													<Select.Option value='state-3'>State 3</Select.Option>
+												<Select 
+													name='permanent_state' 
+													options={perStateOptions}
+													onSelect={(value, event) => fetchCities(value, token, true)}
+												>
 												</Select>
 											</Form.Item>
 										</Col>
@@ -463,10 +458,7 @@ function EditProfile({ token }) {
 												}
 												name='permanent_city'
 											>
-												<Select name='permanent_city'>
-													<Select.Option value='city-1'>City 1</Select.Option>
-													<Select.Option value='city-2'>City 2</Select.Option>
-													<Select.Option value='city-3'>City 3</Select.Option>
+												<Select name='permanent_city' options={perCityOptions}>
 												</Select>
 											</Form.Item>
 										</Col>

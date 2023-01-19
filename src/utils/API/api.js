@@ -53,7 +53,6 @@ export default class API {
 				Authorization: `Bearer ${token}`
 			}
 		};
-		console.log('congig>>>>>>>>>>', config);
 		try {
 			const data = await apiClient.get(`api/vacancy/getCountrys`, config);
 			return Promise.resolve(data);
@@ -84,12 +83,12 @@ export default class API {
 	}
 
 	static async getAllCities(stateId, token) {
-		console.log('City API reached');
 		const config = {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 		};
+		console.log('congig>>>>>>>>>>', config);
 		try {
 			const apiData = { state_id: stateId };
 			const data = await apiClient.post(
