@@ -83,12 +83,12 @@ export default class API {
 	}
 
 	static async getAllCities(stateId, token) {
-		console.log('City API reached');
 		const config = {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 		};
+		console.log('congig>>>>>>>>>>', config);
 		try {
 			const apiData = { state_id: stateId };
 			const data = await apiClient.post(
