@@ -76,10 +76,10 @@ function DashboardContent({ token }) {
 			<br />
 			<Row>
 				<Col span={12}>
-					<VacancyTable />
+					<VacancyTable token={token} />
 				</Col>
 				<Col span={12}>
-					<UpcomingInterviews />
+					<UpcomingInterviews token={token} />
 				</Col>
 			</Row>
 		</>

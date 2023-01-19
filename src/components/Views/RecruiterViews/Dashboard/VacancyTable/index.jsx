@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'antd';
+import API from '../../../../../utils/API/api';
 
 const columns = [
 	{
@@ -55,18 +56,29 @@ const data = [
 	}
 ];
 
-function VacancyTable() {
+function VacancyTable({ token }) {
+	const [vacancyData, setVacancyData] = useState(data);
+
+	function getVacancyData(token) {
+		API.getVacancyData(token).then((res) => {
+			console.log('vacancy data: ', res);
+			// setVacancyData(res.data)
+		});
+	}
+	useEffect(() => {
+		getVacancyData(token);
+	}, []);
 	return (
 		<>
 			<Card
 				title='Pending Vacancies'
 				style={{
-					width: '95%'
+					width: '100%'
 				}}
 			>
 				<Table
 					columns={columns}
-					dataSource={data}
+					dataSource={vacancyData}
 					pagination={false}
 					// pagination={{
 					// 	position: [top, bottom]
