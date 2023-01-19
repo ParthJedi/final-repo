@@ -6,7 +6,6 @@ import {
 	InputNumber,
 	DatePicker,
 	SubmitButton,
-	ResetButton
 } from 'formik-antd';
 import {
 	UploadOutlined,
@@ -64,9 +63,9 @@ const videoProps = {
 	}
 };
 
-function EditProfile({ token }) {
+function EditProfile({token, updateRender}) {
 	console.log('TOOOOOOOOOOOKEN', token);
-	const [render, updateRender] = useState('1');
+	//const [render, updateRender] = useState('1');
 	const [formData, setFormData] = useState({});
 	const [countryOptions, setCountryOptions] = useState([]);
 	const [cityOptions, setCityOptions] = useState([]);
@@ -153,7 +152,7 @@ function EditProfile({ token }) {
 					if (values.website) {
 						if (
 							!values.website.match(
-								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
 							)
 						) {
 							errors.website = 'Please enter a valid URL';
@@ -162,7 +161,7 @@ function EditProfile({ token }) {
 					if (values.github) {
 						if (
 							!values.github.match(
-								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
 							)
 						) {
 							errors.github = 'Please enter a valid URL';
@@ -171,7 +170,7 @@ function EditProfile({ token }) {
 					if (values.linkedin) {
 						if (
 							!values.linkedin.match(
-								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
 							)
 						) {
 							errors.linkedin = 'Please enter a valid URL';
@@ -180,7 +179,7 @@ function EditProfile({ token }) {
 					if (values.facebook) {
 						if (
 							!values.facebook.match(
-								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
 							)
 						) {
 							errors.facebook = 'Please enter a valid URL';
@@ -189,7 +188,7 @@ function EditProfile({ token }) {
 					if (values.twitter) {
 						if (
 							!values.twitter.match(
-								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
 							)
 						) {
 							errors.twitter = 'Please enter a valid URL';
@@ -199,7 +198,7 @@ function EditProfile({ token }) {
 				}}
 				onSubmit={(values) => {
 					createCandidate(values);
-					// updateRender('2');
+					updateRender('3');
 				}}
 			>
 				<Form layout='vertical' className='candidate-form'>

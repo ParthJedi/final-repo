@@ -3,6 +3,7 @@ import './style.css';
 import HeaderContent from './Header/HeaderContent';
 import { Layout } from 'antd';
 import EditProfile from '../EditProfile';
+import ViewProfile from '../EditProfile/ViewProfile';
 import JobOpportunities from '../JobOpportunities';
 
 import SidebarContent from './Sidebar';
@@ -14,7 +15,8 @@ function PageLayout({ token }) {
 
 	const components = {
 		1: <JobOpportunities token={token} updateRender={updateRender} />,
-		2: <EditProfile token={token} updateRender={updateRender} />
+		2: <EditProfile token={token} updateRender={updateRender} />,
+		3: <ViewProfile token={token} updateRender={updateRender} />
 	};
 
 	return (
