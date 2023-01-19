@@ -74,7 +74,7 @@ function RightContent({ setToken }) {
 					</Form.Item>
 				</Form>
 				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>
-					Dopn't have an account?{' '}
+					Don't have an account?{' '}
 				</span>
 				<Link to='/' style={{ color: 'blue' }}>
 					Sign up here

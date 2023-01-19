@@ -102,4 +102,20 @@ export default class API {
 			return Promise.resolve(null);
 		}
 	}
+
+	static async getDashboardCounts(token) {
+		console.log('Dashboard API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(`api/dashboard`, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
 }
