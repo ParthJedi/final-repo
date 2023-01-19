@@ -1,7 +1,6 @@
 #vacancy-form-div {
 	padding: '1em';
 	background-color: 'white';
-	text-align: center;
 }
 
 .ant-input,
@@ -19,8 +18,4 @@
 
 .button-actions-div button {
 	margin: 2em;
-}
-
-#vacancy-form-div .ant-form-item-label {
-	text-align: center !important;
 }

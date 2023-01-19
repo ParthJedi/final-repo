@@ -5,7 +5,7 @@ import {
 	Select,
 	InputNumber,
 	DatePicker,
-	SubmitButton,
+	SubmitButton
 } from 'formik-antd';
 import {
 	UploadOutlined,
@@ -63,8 +63,7 @@ const videoProps = {
 	}
 };
 
-function EditProfile({token, updateRender}) {
-	console.log('TOOOOOOOOOOOKEN', token);
+function EditProfile({ token, updateRender }) {
 	//const [render, updateRender] = useState('1');
 	const [formData, setFormData] = useState({});
 	const [countryOptions, setCountryOptions] = useState([]);
@@ -93,7 +92,7 @@ function EditProfile({token, updateRender}) {
 					value: key.id
 				};
 			});
-			(permanent) ? setPerStateOptions(options) : setStateOptions(options);
+			permanent ? setPerStateOptions(options) : setStateOptions(options);
 		});
 	};
 
@@ -105,7 +104,7 @@ function EditProfile({token, updateRender}) {
 					value: key.id
 				};
 			});
-			(permanent) ? setPerCityOptions(options): setCityOptions(options);
+			permanent ? setPerCityOptions(options) : setCityOptions(options);
 		});
 	};
 
@@ -420,9 +419,10 @@ function EditProfile({token, updateRender}) {
 													name='permanent_country'
 													style={{ marginRight: '10px' }}
 													options={countryOptions}
-													onSelect={(value, event) => fetchState(value, token, true)}
-												>
-												</Select>
+													onSelect={(value, event) =>
+														fetchState(value, token, true)
+													}
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -437,12 +437,13 @@ function EditProfile({token, updateRender}) {
 												}
 												name='permanent_state'
 											>
-												<Select 
-													name='permanent_state' 
+												<Select
+													name='permanent_state'
 													options={perStateOptions}
-													onSelect={(value, event) => fetchCities(value, token, true)}
-												>
-												</Select>
+													onSelect={(value, event) =>
+														fetchCities(value, token, true)
+													}
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -457,8 +458,10 @@ function EditProfile({token, updateRender}) {
 												}
 												name='permanent_city'
 											>
-												<Select name='permanent_city' options={perCityOptions}>
-												</Select>
+												<Select
+													name='permanent_city'
+													options={perCityOptions}
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>

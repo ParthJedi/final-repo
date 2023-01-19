@@ -29,8 +29,6 @@ export default class API {
 		}
 	}
 
-	// token routes
-
 	static async createCompany(companyData, token) {
 		const config = {
 			headers: {
@@ -39,6 +37,21 @@ export default class API {
 		};
 		try {
 			const data = await apiClient.post(`api/recrutirer`, companyData, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
+	static async createVacancy(vacancyData, token) {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.post(`api/vacancy`, vacancyData, config);
 			return Promise.resolve(data);
 		} catch (error) {
 			console.error('errResp', error);
@@ -88,7 +101,6 @@ export default class API {
 				Authorization: `Bearer ${token}`
 			}
 		};
-		console.log('congig>>>>>>>>>>', config);
 		try {
 			const apiData = { state_id: stateId };
 			const data = await apiClient.post(
