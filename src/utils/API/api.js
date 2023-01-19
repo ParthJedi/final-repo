@@ -50,9 +50,10 @@ export default class API {
 		console.log('Country API reached');
 		const config = {
 			headers: {
-				Authorization: `Bearer  ${token}`
+				Authorization: `Bearer ${token}`
 			}
 		};
+		console.log('congig>>>>>>>>>>', config);
 		try {
 			const data = await apiClient.get(`api/vacancy/getCountrys`, config);
 			return Promise.resolve(data);
