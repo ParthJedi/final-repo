@@ -167,13 +167,14 @@ function CompanyProfile({ token, updateRender }) {
 									</Col>
 								</Row>
 							</Col>
-
-							<div className='button-actions-div'>
-								<SubmitButton onSubmit={createCompanyProfile}>
-									Save
-								</SubmitButton>
-								<ResetButton>Reset</ResetButton>
-							</div>
+							<Col span={24} style={{ textAlign: 'center' }}>
+								<div className='button-actions-div'>
+									<SubmitButton onSubmit={createCompanyProfile}>
+										Save
+									</SubmitButton>
+									<ResetButton>Reset</ResetButton>
+								</div>
+							</Col>
 						</Row>
 					</Form>
 				</Formik>
