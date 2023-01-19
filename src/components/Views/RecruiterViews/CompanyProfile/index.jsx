@@ -13,12 +13,12 @@ import './style.css';
 import API from '../../../../utils/API/api';
 const { TextArea } = Input;
 
-function CompanyProfile({ updateRender }) {
+function CompanyProfile({ token, updateRender }) {
 	const navigate = useNavigate();
 
 	function createCompanyProfile(companyData) {
 		console.log('function call with company data', companyData);
-		API.createCompany(companyData)
+		API.createCompany(companyData, token)
 			.then(({ data, status }) => {
 				if (status === 200 && Object.keys(data.data) && data.status === 1) {
 					console.log('success!', data);

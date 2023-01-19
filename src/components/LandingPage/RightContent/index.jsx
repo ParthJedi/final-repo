@@ -32,6 +32,7 @@ function RightContent({ setToken }) {
 							setToken(data.data.token);
 							navigate('/dashboard');
 						} else if (data.data.role_id && data.data.role_id == 2) {
+							setToken(data.data.token);
 							navigate('/candidate');
 						}
 					} else navigate('/');

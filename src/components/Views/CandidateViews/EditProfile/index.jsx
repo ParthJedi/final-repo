@@ -64,15 +64,16 @@ const videoProps = {
 	}
 };
 
-function EditProfile() {
+function EditProfile({ token }) {
+	console.log('TOOOOOOOOOOOKEN', token);
 	const [render, updateRender] = useState('1');
 	const [formData, setFormData] = useState({});
 	const [countryOptions, setCountryOptions] = useState([]);
 	const [cityOptions, setCityOptions] = useState([]);
 	const [stateOptions, setStateOptions] = useState([]);
 
-	const fetchCountries = () => {
-		API.getAllCountries().then(({ data, status }) => {
+	const fetchCountries = (token) => {
+		API.getAllCountries(token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
@@ -83,8 +84,8 @@ function EditProfile() {
 		});
 	};
 
-	const fetchState = (countryId) => {
-		API.getAllSates(countryId).then(({ data, status }) => {
+	const fetchState = (countryId, token) => {
+		API.getAllSates(countryId, token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
@@ -95,8 +96,8 @@ function EditProfile() {
 		});
 	};
 
-	const fetchCities = (stateId) => {
-		console.log(stateId);
+	const fetchCities = (stateId, token) => {
+		console.log(stateId, token);
 		API.getAllCities(stateId).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
@@ -109,7 +110,7 @@ function EditProfile() {
 	};
 
 	useEffect(() => {
-		fetchCountries();
+		fetchCountries(token);
 	}, []);
 
 	function createCandidate(formData) {

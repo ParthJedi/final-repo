@@ -9,12 +9,12 @@ import SidebarContent from './Sidebar';
 
 const { Header, Sider, Content } = Layout;
 
-function PageLayout() {
+function PageLayout({ token }) {
 	const [render, updateRender] = useState('1');
 
 	const components = {
-		1: <JobOpportunities updateRender={updateRender} />,
-		2: <EditProfile updateRender={updateRender} />
+		1: <JobOpportunities token={token} updateRender={updateRender} />,
+		2: <EditProfile token={token} updateRender={updateRender} />
 	};
 
 	return (

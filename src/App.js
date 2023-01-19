@@ -13,17 +13,15 @@ function App() {
 	return (
 		<>
 			<Routes>
-				<Route path='/' setToken={setToken} element={<LandingPage />} />
-				<Route path='/login' setToken={setToken} element={<LoginPage />} />
+				<Route path='/' element={<LandingPage setToken={setToken} />} />
+				<Route path='/login' element={<LoginPage setToken={setToken} />} />
 				<Route
 					path='/dashboard'
-					token={token}
-					element={<RecruiterPageLayout />}
+					element={<RecruiterPageLayout token={token} />}
 				/>
 				<Route
 					path='/candidate'
-					token={token}
-					element={<CandidatePageLayout />}
+					element={<CandidatePageLayout token={token} />}
 				/>
 				<Route path='*' element={<PageNotFound />} />
 			</Routes>

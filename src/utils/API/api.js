@@ -29,11 +29,12 @@ export default class API {
 		}
 	}
 
-	static async createCompany(companyData) {
-		console.log('ÄPI reached');
+	// token routes
+
+	static async createCompany(companyData, token) {
 		const config = {
 			headers: {
-				Authorization: `Bearer ${secretToken}`
+				Authorization: `Bearer ${token}`
 			}
 		};
 		try {
@@ -45,12 +46,11 @@ export default class API {
 		}
 	}
 
-
-	static async getAllCountries() {
+	static async getAllCountries(token) {
 		console.log('Country API reached');
 		const config = {
 			headers: {
-				Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtcmcxQHlhaG9vLmNvbSIsInJvbGVfaWQiOjEsImNvbXBhbnlfaWQiOjAsImlhdCI6MTY3NDA2NjM0OSwiZXhwIjoxNjc0MTUyNzQ5fQ.tToG2rAeCDC3AzXTRgLf3iVe8zjkWCUBHgGqGviNQuU`
+				Authorization: `Bearer  ${token}`
 			}
 		};
 		try {
@@ -62,16 +62,19 @@ export default class API {
 		}
 	}
 
-	static async getAllSates(countryId) {
-		console.log('State API reached');
+	static async getAllSates(countryId, token) {
 		const config = {
 			headers: {
-				Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtcmcxQHlhaG9vLmNvbSIsInJvbGVfaWQiOjEsImNvbXBhbnlfaWQiOjAsImlhdCI6MTY3NDA2NjM0OSwiZXhwIjoxNjc0MTUyNzQ5fQ.tToG2rAeCDC3AzXTRgLf3iVe8zjkWCUBHgGqGviNQuU`
+				Authorization: `Bearer ${token}`
 			}
 		};
 		try {
-			const apiData = { country_id : countryId}
-			const data = await apiClient.post(`api/vacancy/getStates`, apiData, config);
+			const apiData = { country_id: countryId };
+			const data = await apiClient.post(
+				`api/vacancy/getStates`,
+				apiData,
+				config
+			);
 			return Promise.resolve(data);
 		} catch (error) {
 			console.error('errResp', error);
@@ -79,16 +82,20 @@ export default class API {
 		}
 	}
 
-	static async getAllCities(stateId) {
+	static async getAllCities(stateId, token) {
 		console.log('City API reached');
 		const config = {
 			headers: {
-				Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtcmcxQHlhaG9vLmNvbSIsInJvbGVfaWQiOjEsImNvbXBhbnlfaWQiOjAsImlhdCI6MTY3NDA2NjM0OSwiZXhwIjoxNjc0MTUyNzQ5fQ.tToG2rAeCDC3AzXTRgLf3iVe8zjkWCUBHgGqGviNQuU`
+				Authorization: `Bearer ${token}`
 			}
 		};
 		try {
-			const apiData = { state_id : stateId}
-			const data = await apiClient.post(`api/vacancy/getCitys`, apiData, config);
+			const apiData = { state_id: stateId };
+			const data = await apiClient.post(
+				`api/vacancy/getCitys`,
+				apiData,
+				config
+			);
 			return Promise.resolve(data);
 		} catch (error) {
 			console.error('errResp', error);

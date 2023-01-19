@@ -12,16 +12,16 @@ import FinalVacancyListings from '../Vacancies/FinalVacancyListings';
 
 const { Header, Sider, Content } = Layout;
 
-function RecruiterPageLayout() {
+function RecruiterPageLayout({ token }) {
 	const [render, updateRender] = useState('1');
 
 	const components = {
-		1: <DashboardContent />,
-		2: <CompanyProfile updateRender={updateRender} />,
-		3: <Vacancies updateRender={updateRender} />,
-		4: <Candidates />,
-		5: <FinalCompanyPage />,
-		6: <FinalVacancyListings />
+		1: <DashboardContent token={token} />,
+		2: <CompanyProfile token={token} updateRender={updateRender} />,
+		3: <Vacancies token={token} updateRender={updateRender} />,
+		4: <Candidates token={token} />,
+		5: <FinalCompanyPage token={token} />,
+		6: <FinalVacancyListings token={token} />
 	};
 
 	return (
