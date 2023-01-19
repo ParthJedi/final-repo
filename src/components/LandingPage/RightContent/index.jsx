@@ -52,6 +52,7 @@ function RightContent({ setToken }) {
 			registerData.mobile_no === ''
 		) {
 			alert('Please fill all the fields correctly!');
+			setLoading(false);
 			return false;
 		} else return true;
 	}
