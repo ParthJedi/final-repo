@@ -4,7 +4,7 @@ import LeftContent from './LeftContent';
 import RightContent from './RightContent';
 // import { useOutletContext } from 'react-router-dom';
 
-function LoginPage() {
+function LoginPage({ setToken }) {
 	// const obj = useOutletContext();
 	return (
 		<Row>
@@ -12,7 +12,7 @@ function LoginPage() {
 				<LeftContent />
 			</Col>
 			<Col span={12}>
-				<RightContent />
+				<RightContent setToken={setToken} />
 			</Col>
 		</Row>
 	);

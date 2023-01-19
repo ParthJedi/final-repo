@@ -3,14 +3,14 @@ import { Col, Row } from 'antd';
 import LeftContent from './LeftContent';
 import RightContent from './RightContent';
 
-function LandingPage() {
+function LandingPage({ setToken }) {
 	return (
 		<Row>
 			<Col span={12}>
 				<LeftContent />
 			</Col>
 			<Col span={12}>
-				<RightContent />
+				<RightContent setToken={setToken} />
 			</Col>
 		</Row>
 	);

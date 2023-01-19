@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Col, Form, Input, Button, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
 
-function RightContent() {
+function RightContent({ setToken }) {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 
@@ -25,6 +25,7 @@ function RightContent() {
 				.then(({ data, status }) => {
 					if (status === 200 && data.status === 1) {
 						if (data.data.role_id && data.data.role_id == 1) {
+							setToken(data.data.token);
 							navigate('/dashboard');
 						} else if (data.data.role_id && data.data.role_id == 2) {
 							navigate('/candidate');
