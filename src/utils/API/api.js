@@ -59,6 +59,38 @@ export default class API {
 		}
 	}
 
+	static async getProfileData(token) {
+		console.log('Profile API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(`api/candidate`, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.log('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
+	static async createProfile(profileData, token) {
+		console.log('Create Profile API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.post(`api/candidate`, profileData, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
 	static async getAllCountries(token) {
 		console.log('Country API reached');
 		const config = {

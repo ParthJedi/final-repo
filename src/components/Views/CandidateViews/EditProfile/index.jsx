@@ -71,6 +71,13 @@ function EditProfile({ token, updateRender }) {
 	const [perCityOptions, setPerCityOptions] = useState([]);
 	const [stateOptions, setStateOptions] = useState([]);
 	const [perStateOptions, setPerStateOptions] = useState([]);
+	const [profileData, setProfileData] = useState([]);
+
+	const fetchProfileData = (token) => {
+		API.getProfileData(token).then(({ data, status }) => {
+			setProfileData(data);
+		});
+	};
 
 	const fetchCountries = (token) => {
 		API.getAllCountries(token).then(({ data, status }) => {
@@ -110,21 +117,20 @@ function EditProfile({ token, updateRender }) {
 
 	useEffect(() => {
 		fetchCountries(token);
+		fetchProfileData(token);
 	}, []);
 
 	function createCandidate(formData) {
+		API.createProfile(formData, token).then(({ data, status }) => {
+			//setProfileData(formData);
+		});
 		console.log('hey', formData);
 	}
 	return (
 		<>
 			<Formik
-				initialValues={{
-					first_name: '',
-					last_name: '',
-					email: '',
-					phone: '',
-					current_city: ''
-				}}
+				initialValues={profileData}
+				enableReinitialize
 				validate={(values) => {
 					const errors = {};
 					if (!values.first_name) {
@@ -139,13 +145,13 @@ function EditProfile({ token, updateRender }) {
 					if (!values.phone) {
 						errors.phone = 'Phone is required';
 					}
-					if (!values.current_country) {
+					if (!values.current_country_id) {
 						errors.current_country = 'Country is required';
 					}
-					if (!values.current_state) {
+					if (!values.current_state_id) {
 						errors.current_state = 'State is required';
 					}
-					if (!values.current_city) {
+					if (!values.current_city_id) {
 						errors.current_city = 'City is required';
 					}
 					if (values.website) {
@@ -306,10 +312,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='current_country'
+												name='current_country_id'
 											>
 												<Select
-													name='current_country'
+													name='current_country_id'
 													style={{ marginRight: '10px' }}
 													options={countryOptions}
 													onSelect={(value, event) => fetchState(value, token)}
@@ -326,10 +332,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='current_state'
+												name='current_state_id'
 											>
 												<Select
-													name='current_state'
+													name='current_state_id'
 													options={stateOptions}
 													onSelect={(value, event) => fetchCities(value, token)}
 												></Select>
@@ -345,10 +351,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='current_city'
+												name='current_city_id'
 											>
 												<Select
-													name='current_city'
+													name='current_city_id'
 													options={cityOptions}
 												></Select>
 											</Form.Item>
@@ -363,9 +369,9 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='cur_zipcode'
+												name='current_zip_code'
 											>
-												<Input name='cur_zipcode' type='tel' />
+												<Input name='current_zip_code' type='tel' />
 											</Form.Item>
 										</Col>
 									</Row>
@@ -413,10 +419,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='permanent_country'
+												name='permanent_country_id'
 											>
 												<Select
-													name='permanent_country'
+													name='permanent_country_id'
 													style={{ marginRight: '10px' }}
 													options={countryOptions}
 													onSelect={(value, event) =>
@@ -435,10 +441,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='permanent_state'
+												name='permanent_state_id'
 											>
-												<Select
-													name='permanent_state'
+												<Select 
+													name='permanent_state_id' 
 													options={perStateOptions}
 													onSelect={(value, event) =>
 														fetchCities(value, token, true)
@@ -456,12 +462,10 @@ function EditProfile({ token, updateRender }) {
 														</span>
 													</>
 												}
-												name='permanent_city'
+												name='permanent_city_id'
 											>
-												<Select
-													name='permanent_city'
-													options={perCityOptions}
-												></Select>
+												<Select name='permanent_city_id' options={perCityOptions}>
+												</Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -505,9 +509,9 @@ function EditProfile({ token, updateRender }) {
 										name='job_category_id'
 									>
 										<Select name='job_category_id'>
-											<Select.Option value='city-1'>City 1</Select.Option>
-											<Select.Option value='city-2'>City 2</Select.Option>
-											<Select.Option value='city-3'>City 3</Select.Option>
+											<Select.Option value='1'>Hybrid</Select.Option>
+											<Select.Option value='2'>Remote</Select.Option>
+											<Select.Option value='3'>On Site</Select.Option>
 										</Select>
 									</Form.Item>
 								</Col>
@@ -519,13 +523,13 @@ function EditProfile({ token, updateRender }) {
 												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name='total_experience'
+										name='total_expeiance'
 									>
 										<InputNumber
 											addonAfter='Years'
 											min={0}
 											max={100}
-											name='total_experience'
+											name='total_expeiance'
 										/>
 									</Form.Item>
 								</Col>
@@ -537,9 +541,9 @@ function EditProfile({ token, updateRender }) {
 												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name='currency_id'
+										name='currancy_id'
 									>
-										<Select name='currency_id'>
+										<Select name='currancy_id'>
 											<Select.Option value='1'>INR</Select.Option>
 											<Select.Option value='2'>USD</Select.Option>
 											<Select.Option value='3'>Other</Select.Option>
@@ -706,46 +710,46 @@ function EditProfile({ token, updateRender }) {
 						<Col span={24}>
 							<Row gutter={[16]}>
 								<Col md={24} span={24}>
-									<Form.Item label='Portfolio / Website:' name='website'>
+									<Form.Item label='Portfolio / Website:' name='website_link'>
 										<Input
 											addonBefore='https://'
-											name='website'
+											name='website_link'
 											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label='LinkedIn:' name='linkedin'>
+									<Form.Item label='LinkedIn:' name='linked_link'>
 										<Input
 											addonBefore={<LinkedinOutlined />}
-											name='linkedin'
+											name='linked_link'
 											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label='GitHub:' name='github'>
+									<Form.Item label='GitHub:' name='github_link'>
 										<Input
 											addonBefore={<GithubOutlined />}
-											name='github'
+											name='github_link'
 											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label='Facebook:' name='facebook'>
+									<Form.Item label='Facebook:' name='facebook_link'>
 										<Input
 											addonBefore={<FacebookOutlined />}
-											name='facebook'
+											name='facebook_link'
 											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label='Twitter:' name='twitter'>
+									<Form.Item label='Twitter:' name='twitter_link'>
 										<Input
 											addonBefore={<TwitterOutlined />}
-											name='twitter'
+											name='twitter_link'
 											defaultValue=''
 										/>
 									</Form.Item>
