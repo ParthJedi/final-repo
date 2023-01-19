@@ -156,4 +156,23 @@ export default class API {
 			return Promise.resolve(null);
 		}
 	}
+
+	static async getCandidateList(token) {
+		console.log('candidate data API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(
+				`api/vacancy/getCandidateListing`,
+				config
+			);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
 }
