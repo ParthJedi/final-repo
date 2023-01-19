@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
 	Form,
 	Input,
@@ -6,66 +6,66 @@ import {
 	InputNumber,
 	DatePicker,
 	SubmitButton,
-	ResetButton,
-} from "formik-antd";
+	ResetButton
+} from 'formik-antd';
 import {
 	UploadOutlined,
 	LinkedinOutlined,
 	GithubOutlined,
 	FacebookOutlined,
-	TwitterOutlined,
-} from "@ant-design/icons";
-import { Row, Col, Divider, message, Upload } from "antd";
-import { Formik } from "formik";
+	TwitterOutlined
+} from '@ant-design/icons';
+import { Row, Col, Divider, message, Upload } from 'antd';
+import { Formik } from 'formik';
 import API from '../../../../utils/API/api';
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
 const resumeProps = {
-	name: "file",
+	name: 'file',
 	multiple: false,
-	accept: "video/mp4",
-	action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+	accept: 'video/mp4',
+	action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 	onChange(info) {
 		const { status } = info.file;
-		if (status !== "uploading") {
+		if (status !== 'uploading') {
 			console.log(info.file, info.fileList);
 		}
-		if (status === "done") {
+		if (status === 'done') {
 			message.success(`${info.file.name} file uploaded successfully.`);
-		} else if (status === "error") {
+		} else if (status === 'error') {
 			message.error(`${info.file.name} file upload failed.`);
 		}
 	},
 	onDrop(e) {
-		console.log("Dropped files", e.dataTransfer.files);
-	},
+		console.log('Dropped files', e.dataTransfer.files);
+	}
 };
 
 const videoProps = {
-	name: "file",
+	name: 'file',
 	multiple: false,
-	accept: "video/mp4",
-	action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+	accept: 'video/mp4',
+	action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 	onChange(info) {
 		const { status } = info.file;
-		if (status !== "uploading") {
+		if (status !== 'uploading') {
 			console.log(info.file, info.fileList);
 		}
-		if (status === "done") {
+		if (status === 'done') {
 			message.success(`${info.file.name} file uploaded successfully.`);
-		} else if (status === "error") {
+		} else if (status === 'error') {
 			message.error(`${info.file.name} file upload failed.`);
 		}
 	},
 	onDrop(e) {
-		console.log("Dropped files", e.dataTransfer.files);
-	},
+		console.log('Dropped files', e.dataTransfer.files);
+	}
 };
 
 function EditProfile() {
-	const [render, updateRender] = useState("1");
+	const [render, updateRender] = useState('1');
 	const [formData, setFormData] = useState({});
 	const [countryOptions, setCountryOptions] = useState([]);
 	const [cityOptions, setCityOptions] = useState([]);
@@ -76,7 +76,7 @@ function EditProfile() {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
-					value: key.id,
+					value: key.id
 				};
 			});
 			setCountryOptions(options);
@@ -88,7 +88,7 @@ function EditProfile() {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
-					value: key.id,
+					value: key.id
 				};
 			});
 			setStateOptions(options);
@@ -101,7 +101,7 @@ function EditProfile() {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
-					value: key.id,
+					value: key.id
 				};
 			});
 			setCityOptions(options);
@@ -113,40 +113,40 @@ function EditProfile() {
 	}, []);
 
 	function createCandidate(formData) {
-		console.log("hey", formData);
+		console.log('hey', formData);
 	}
 	return (
 		<>
 			<Formik
 				initialValues={{
-					first_name: "",
-					last_name: "",
-					email: "",
-					phone: "",
-					current_city: "",
+					first_name: '',
+					last_name: '',
+					email: '',
+					phone: '',
+					current_city: ''
 				}}
 				validate={(values) => {
 					const errors = {};
 					if (!values.first_name) {
-						errors.first_name = "First name is required";
+						errors.first_name = 'First name is required';
 					}
 					if (!values.last_name) {
-						errors.last_name = "Last name is required";
+						errors.last_name = 'Last name is required';
 					}
 					if (!values.email) {
-						errors.email = "Email is required";
+						errors.email = 'Email is required';
 					}
 					if (!values.phone) {
-						errors.phone = "Phone is required";
+						errors.phone = 'Phone is required';
 					}
 					if (!values.current_country) {
-						errors.current_country = "Country is required";
+						errors.current_country = 'Country is required';
 					}
 					if (!values.current_state) {
-						errors.current_state = "State is required";
+						errors.current_state = 'State is required';
 					}
 					if (!values.current_city) {
-						errors.current_city = "City is required";
+						errors.current_city = 'City is required';
 					}
 					if (values.website) {
 						if (
@@ -154,7 +154,7 @@ function EditProfile() {
 								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 							)
 						) {
-							errors.website = "Please enter a valid URL";
+							errors.website = 'Please enter a valid URL';
 						}
 					}
 					if (values.github) {
@@ -163,7 +163,7 @@ function EditProfile() {
 								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 							)
 						) {
-							errors.github = "Please enter a valid URL";
+							errors.github = 'Please enter a valid URL';
 						}
 					}
 					if (values.linkedin) {
@@ -172,7 +172,7 @@ function EditProfile() {
 								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 							)
 						) {
-							errors.linkedin = "Please enter a valid URL";
+							errors.linkedin = 'Please enter a valid URL';
 						}
 					}
 					if (values.facebook) {
@@ -181,7 +181,7 @@ function EditProfile() {
 								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 							)
 						) {
-							errors.facebook = "Please enter a valid URL";
+							errors.facebook = 'Please enter a valid URL';
 						}
 					}
 					if (values.twitter) {
@@ -190,7 +190,7 @@ function EditProfile() {
 								/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
 							)
 						) {
-							errors.twitter = "Please enter a valid URL";
+							errors.twitter = 'Please enter a valid URL';
 						}
 					}
 					return errors;
@@ -200,11 +200,11 @@ function EditProfile() {
 					// updateRender('2');
 				}}
 			>
-				<Form layout="vertical" className="candidate-form">
-					<Row className="personal-information">
+				<Form layout='vertical' className='candidate-form'>
+					<Row className='personal-information'>
 						<Col span={24}>
 							<h2>Personal Information</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Add you personal details like full name, address details etc
 							</p>
 							<Divider />
@@ -216,12 +216,12 @@ function EditProfile() {
 										label={
 											<>
 												First Name:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="first_name"
+										name='first_name'
 									>
-										<Input name="first_name" />
+										<Input name='first_name' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
@@ -229,12 +229,12 @@ function EditProfile() {
 										label={
 											<>
 												Last Name:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="last_name"
+										name='last_name'
 									>
-										<Input name="last_name" />
+										<Input name='last_name' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
@@ -242,12 +242,12 @@ function EditProfile() {
 										label={
 											<>
 												Email Address:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="email"
+										name='email'
 									>
-										<Input name="email" type="email" />
+										<Input name='email' type='email' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
@@ -255,12 +255,12 @@ function EditProfile() {
 										label={
 											<>
 												Phone Number:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="phone"
+										name='phone'
 									>
-										<Input name="phone" type="tel" />
+										<Input name='phone' type='tel' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
@@ -271,14 +271,14 @@ function EditProfile() {
 												label={
 													<>
 														Address Line 1:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="current_address_line_1"
+												name='current_address_line_1'
 											>
-												<Input name="current_address_line_1" />
+												<Input name='current_address_line_1' />
 											</Form.Item>
 										</Col>
 										<Col md={24} span={24}>
@@ -286,14 +286,14 @@ function EditProfile() {
 												label={
 													<>
 														Address Line 2:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="current_address_line_2"
+												name='current_address_line_2'
 											>
-												<Input name="current_address_line_2" />
+												<Input name='current_address_line_2' />
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -301,20 +301,19 @@ function EditProfile() {
 												label={
 													<>
 														Country:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="current_country"
+												name='current_country'
 											>
 												<Select
-													name="current_country"
-													style={{ marginRight: "10px" }}
+													name='current_country'
+													style={{ marginRight: '10px' }}
 													options={countryOptions}
 													onSelect={(value, event) => fetchState(value)}
-												>
-												</Select>
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -322,19 +321,18 @@ function EditProfile() {
 												label={
 													<>
 														State:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="current_state"
+												name='current_state'
 											>
-												<Select 
-													name="current_state" 
+												<Select
+													name='current_state'
 													options={stateOptions}
 													onSelect={(value, event) => fetchCities(value)}
-												>
-												</Select>
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -342,15 +340,17 @@ function EditProfile() {
 												label={
 													<>
 														City:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="current_city"
+												name='current_city'
 											>
-												<Select name="current_city" options={cityOptions}>
-												</Select>
+												<Select
+													name='current_city'
+													options={cityOptions}
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -358,14 +358,14 @@ function EditProfile() {
 												label={
 													<>
 														Zipcode:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="cur_zipcode"
+												name='cur_zipcode'
 											>
-												<Input name="cur_zipcode" type="tel" />
+												<Input name='cur_zipcode' type='tel' />
 											</Form.Item>
 										</Col>
 									</Row>
@@ -378,14 +378,14 @@ function EditProfile() {
 												label={
 													<>
 														Address Line 1:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_address_line_1"
+												name='permanent_address_line_1'
 											>
-												<Input name="permanent_address_line_1" />
+												<Input name='permanent_address_line_1' />
 											</Form.Item>
 										</Col>
 										<Col md={24} span={24}>
@@ -393,14 +393,14 @@ function EditProfile() {
 												label={
 													<>
 														Address Line 2:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_address_line_2"
+												name='permanent_address_line_2'
 											>
-												<Input name="permanent_address_line_2" />
+												<Input name='permanent_address_line_2' />
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>
@@ -408,24 +408,24 @@ function EditProfile() {
 												label={
 													<>
 														Country:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_country"
+												name='permanent_country'
 											>
 												<Select
-													name="permanent_country"
-													style={{ marginRight: "10px" }}
+													name='permanent_country'
+													style={{ marginRight: '10px' }}
 												>
-													<Select.Option value="country-1">
+													<Select.Option value='country-1'>
 														Country 1
 													</Select.Option>
-													<Select.Option value="country-2">
+													<Select.Option value='country-2'>
 														Country 2
 													</Select.Option>
-													<Select.Option value="country-3">
+													<Select.Option value='country-3'>
 														Country 3
 													</Select.Option>
 												</Select>
@@ -436,17 +436,17 @@ function EditProfile() {
 												label={
 													<>
 														State:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_state"
+												name='permanent_state'
 											>
-												<Select name="permanent_state">
-													<Select.Option value="state-1">State 1</Select.Option>
-													<Select.Option value="state-2">State 2</Select.Option>
-													<Select.Option value="state-3">State 3</Select.Option>
+												<Select name='permanent_state'>
+													<Select.Option value='state-1'>State 1</Select.Option>
+													<Select.Option value='state-2'>State 2</Select.Option>
+													<Select.Option value='state-3'>State 3</Select.Option>
 												</Select>
 											</Form.Item>
 										</Col>
@@ -455,17 +455,17 @@ function EditProfile() {
 												label={
 													<>
 														City:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_city"
+												name='permanent_city'
 											>
-												<Select name="permanent_city">
-													<Select.Option value="city-1">City 1</Select.Option>
-													<Select.Option value="city-2">City 2</Select.Option>
-													<Select.Option value="city-3">City 3</Select.Option>
+												<Select name='permanent_city'>
+													<Select.Option value='city-1'>City 1</Select.Option>
+													<Select.Option value='city-2'>City 2</Select.Option>
+													<Select.Option value='city-3'>City 3</Select.Option>
 												</Select>
 											</Form.Item>
 										</Col>
@@ -474,14 +474,14 @@ function EditProfile() {
 												label={
 													<>
 														Zipcode:
-														<span style={{ color: "red", fontSize: "1em" }}>
+														<span style={{ color: 'red', fontSize: '1em' }}>
 															*
 														</span>
 													</>
 												}
-												name="permanent_zip_code"
+												name='permanent_zip_code'
 											>
-												<Input name="permanent_zip_code" type="tel" />
+												<Input name='permanent_zip_code' type='tel' />
 											</Form.Item>
 										</Col>
 									</Row>
@@ -489,10 +489,10 @@ function EditProfile() {
 							</Row>
 						</Col>
 					</Row>
-					<Row className="work-information">
+					<Row className='work-information'>
 						<Col span={24}>
 							<h2>Work Information</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Add you work related details like skills, categoty etc
 							</p>
 							<Divider />
@@ -504,15 +504,15 @@ function EditProfile() {
 										label={
 											<>
 												Job Category:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="job_category_id"
+										name='job_category_id'
 									>
-										<Select name="job_category_id">
-											<Select.Option value="city-1">City 1</Select.Option>
-											<Select.Option value="city-2">City 2</Select.Option>
-											<Select.Option value="city-3">City 3</Select.Option>
+										<Select name='job_category_id'>
+											<Select.Option value='city-1'>City 1</Select.Option>
+											<Select.Option value='city-2'>City 2</Select.Option>
+											<Select.Option value='city-3'>City 3</Select.Option>
 										</Select>
 									</Form.Item>
 								</Col>
@@ -521,16 +521,16 @@ function EditProfile() {
 										label={
 											<>
 												Total Experience:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="total_experience"
+										name='total_experience'
 									>
 										<InputNumber
-											addonAfter="Years"
+											addonAfter='Years'
 											min={0}
 											max={100}
-											name="total_experience"
+											name='total_experience'
 										/>
 									</Form.Item>
 								</Col>
@@ -539,15 +539,15 @@ function EditProfile() {
 										label={
 											<>
 												Currency:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="currency_id"
+										name='currency_id'
 									>
-										<Select name="currency_id">
-											<Select.Option value="1">INR</Select.Option>
-											<Select.Option value="2">USD</Select.Option>
-											<Select.Option value="3">Other</Select.Option>
+										<Select name='currency_id'>
+											<Select.Option value='1'>INR</Select.Option>
+											<Select.Option value='2'>USD</Select.Option>
+											<Select.Option value='3'>Other</Select.Option>
 										</Select>
 									</Form.Item>
 								</Col>
@@ -557,16 +557,16 @@ function EditProfile() {
 										label={
 											<>
 												Current CTC:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="current_ctc"
+										name='current_ctc'
 									>
 										<InputNumber
-											addonAfter="USD"
+											addonAfter='USD'
 											min={0}
 											max={100}
-											name="current_ctc"
+											name='current_ctc'
 										/>
 									</Form.Item>
 								</Col>
@@ -575,16 +575,16 @@ function EditProfile() {
 										label={
 											<>
 												Expected CTC:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="expected_ctc"
+										name='expected_ctc'
 									>
 										<InputNumber
-											addonAfter="USD"
+											addonAfter='USD'
 											min={0}
 											max={100}
-											name="expected_ctc"
+											name='expected_ctc'
 										/>
 									</Form.Item>
 								</Col>
@@ -593,25 +593,25 @@ function EditProfile() {
 										label={
 											<>
 												Skills:
-												<span style={{ color: "red", fontSize: "1em" }}>*</span>
+												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
 											</>
 										}
-										name="skills"
+										name='skills'
 									>
-										<Select name="skills">
-											<Select.Option value="1">Skill 1</Select.Option>
-											<Select.Option value="2">Skill 2</Select.Option>
-											<Select.Option value="3">Skill 3</Select.Option>
+										<Select name='skills'>
+											<Select.Option value='1'>Skill 1</Select.Option>
+											<Select.Option value='2'>Skill 2</Select.Option>
+											<Select.Option value='3'>Skill 3</Select.Option>
 										</Select>
 									</Form.Item>
 								</Col>
 							</Row>
 						</Col>
 					</Row>
-					<Row className="experience">
+					<Row className='experience'>
 						<Col span={24}>
 							<h2>Work experience details</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Add you work related details like company name, role, duration
 								etc.
 							</p>
@@ -620,52 +620,52 @@ function EditProfile() {
 						<Col span={24}>
 							<Row gutter={[16]}>
 								<Col md={12} span={24}>
-									<Form.Item label={<>Search your company:</>} name="company">
-										<Input addonAfter="Search" name="company" />
+									<Form.Item label={<>Search your company:</>} name='company'>
+										<Input addonAfter='Search' name='company' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label={<>Role / Designation:</>} name="role">
-										<Input name="role" />
+									<Form.Item label={<>Role / Designation:</>} name='role'>
+										<Input name='role' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label={<>Start Date:</>} name="start_date">
-										<DatePicker name="start_date" />
+									<Form.Item label={<>Start Date:</>} name='start_date'>
+										<DatePicker name='start_date' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label={<>End Date:</>} name="end_date">
-										<DatePicker name="end_date" />
+									<Form.Item label={<>End Date:</>} name='end_date'>
+										<DatePicker name='end_date' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label={<>Description:</>} name="description">
-										<TextArea name="description" rows={4} />
+									<Form.Item label={<>Description:</>} name='description'>
+										<TextArea name='description' rows={4} />
 									</Form.Item>
 								</Col>
 							</Row>
 						</Col>
 					</Row>
-					<Row className="resume">
+					<Row className='resume'>
 						<Col span={24}>
 							<h2>Upload your latest resume</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Upload your latest resume with all details
 							</p>
 							<Divider />
 						</Col>
 						<Col span={24}>
 							<Row gutter={[16]}>
-								<Col md={24} span={24} style={{ marginBottom: "20px" }}>
+								<Col md={24} span={24} style={{ marginBottom: '20px' }}>
 									<Dragger {...resumeProps}>
-										<p className="ant-upload-drag-icon">
+										<p className='ant-upload-drag-icon'>
 											<UploadOutlined />
 										</p>
-										<p className="ant-upload-text">
+										<p className='ant-upload-text'>
 											Click or drag file to this area to upload
 										</p>
-										<p className="ant-upload-hint">
+										<p className='ant-upload-hint'>
 											Support for a single upload. File types: PDF, DOCX, PPTX
 										</p>
 									</Dragger>
@@ -673,25 +673,25 @@ function EditProfile() {
 							</Row>
 						</Col>
 					</Row>
-					<Row className="video">
+					<Row className='video'>
 						<Col span={24}>
 							<h2>Upload your video introduction</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Present yourself in a video introduction
 							</p>
 							<Divider />
 						</Col>
 						<Col span={24}>
 							<Row gutter={[16]}>
-								<Col md={24} span={24} style={{ marginBottom: "20px" }}>
+								<Col md={24} span={24} style={{ marginBottom: '20px' }}>
 									<Dragger {...videoProps}>
-										<p className="ant-upload-drag-icon">
+										<p className='ant-upload-drag-icon'>
 											<UploadOutlined />
 										</p>
-										<p className="ant-upload-text">
+										<p className='ant-upload-text'>
 											Click or drag file to this area to upload
 										</p>
-										<p className="ant-upload-hint">
+										<p className='ant-upload-hint'>
 											Support for a single upload. Video only:mp4, 4:3, less
 											than 3 min, max 15MB
 										</p>
@@ -700,10 +700,10 @@ function EditProfile() {
 							</Row>
 						</Col>
 					</Row>
-					<Row className="social-links">
+					<Row className='social-links'>
 						<Col span={24}>
 							<h2>Add your social links</h2>
-							<p className="hp-p1-body hp-mb-0">
+							<p className='hp-p1-body hp-mb-0'>
 								Showcase your social links, website here
 							</p>
 							<Divider />
@@ -711,47 +711,47 @@ function EditProfile() {
 						<Col span={24}>
 							<Row gutter={[16]}>
 								<Col md={24} span={24}>
-									<Form.Item label="Portfolio / Website:" name="website">
+									<Form.Item label='Portfolio / Website:' name='website'>
 										<Input
-											addonBefore="https://"
-											name="website"
-											defaultValue=""
+											addonBefore='https://'
+											name='website'
+											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label="LinkedIn:" name="linkedin">
+									<Form.Item label='LinkedIn:' name='linkedin'>
 										<Input
 											addonBefore={<LinkedinOutlined />}
-											name="linkedin"
-											defaultValue=""
+											name='linkedin'
+											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label="GitHub:" name="github">
+									<Form.Item label='GitHub:' name='github'>
 										<Input
 											addonBefore={<GithubOutlined />}
-											name="github"
-											defaultValue=""
+											name='github'
+											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label="Facebook:" name="facebook">
+									<Form.Item label='Facebook:' name='facebook'>
 										<Input
 											addonBefore={<FacebookOutlined />}
-											name="facebook"
-											defaultValue=""
+											name='facebook'
+											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
-									<Form.Item label="Twitter:" name="twitter">
+									<Form.Item label='Twitter:' name='twitter'>
 										<Input
 											addonBefore={<TwitterOutlined />}
-											name="twitter"
-											defaultValue=""
+											name='twitter'
+											defaultValue=''
 										/>
 									</Form.Item>
 								</Col>
@@ -759,7 +759,7 @@ function EditProfile() {
 						</Col>
 					</Row>
 					<Row>
-						<Col md={24} span={24} className="button-actions-col">
+						<Col md={24} span={24} className='button-actions-col'>
 							<SubmitButton>Save</SubmitButton>
 						</Col>
 					</Row>
