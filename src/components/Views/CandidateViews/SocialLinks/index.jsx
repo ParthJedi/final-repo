@@ -12,7 +12,7 @@ import {
 function SocialLinks({ updateRender }) {
 	return (
 		<>
-			<Row className='candidate-form'>
+			<Row className='social-links'>
 				<Col span={24}>
 					<h2>Add your social links</h2>
 					<p className='hp-p1-body hp-mb-0'>

@@ -7,7 +7,7 @@ const { TextArea } = Input;
 function Experience({ updateRender }) {
 	return (
 		<>
-            <Row className='candidate-form'>
+            <Row className='experience'>
                 <Col span={24}>
                     <h2>Work experience details</h2>
                     <p className="hp-p1-body hp-mb-0">
