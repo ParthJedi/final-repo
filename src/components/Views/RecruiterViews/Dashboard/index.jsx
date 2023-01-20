@@ -16,10 +16,9 @@ function DashboardContent({ token }) {
 	function getDashboardCounts(token) {
 		API.getDashboardCounts(token)
 			.then((res) => {
-				console.log('Dashboard Response: ', res);
-				setInterviewsToday(1);
-				setPendingInterviews(2);
-				setVacancies(3);
+				setInterviewsToday(res.data.interviewtodayCount);
+				setPendingInterviews(res.data.pendinginterviewCount);
+				setVacancies(res.data.numberofvacancyCount);
 			})
 			.catch((err) => {
 				console.log('e', err);
