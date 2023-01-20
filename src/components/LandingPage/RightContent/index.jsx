@@ -28,10 +28,10 @@ function RightContent({ setToken }) {
 			API.registerUser(registerData)
 				.then(({ data, status }) => {
 					if (status === 200 && data.status === 1) {
-						if (data.data.role_id && data.data.role_id === 1) {
+						if (data.data.role_id && data.data.role_id === 2) {
 							setToken(data.data.token);
 							navigate('/dashboard');
-						} else if (data.data.role_id && data.data.role_id === 2) {
+						} else if (data.data.role_id && data.data.role_id === 1) {
 							setToken(data.data.token);
 							navigate('/candidate');
 						}
@@ -69,8 +69,8 @@ function RightContent({ setToken }) {
 					<p>
 						Who are you?&nbsp;&nbsp;&nbsp;
 						<Radio.Group name='role_id'>
-							<Radio value='2'>Recruiter</Radio>
-							<Radio value='1'>Candidate</Radio>
+							<Radio value={1}>Candidate</Radio>
+							<Radio value={2}>Recruiter</Radio>
 						</Radio.Group>
 					</p>
 

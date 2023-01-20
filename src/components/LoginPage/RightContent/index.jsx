@@ -24,10 +24,10 @@ function RightContent({ setToken }) {
 			API.loginUser(loginData)
 				.then(({ data, status }) => {
 					if (status === 200 && data.status === 1) {
-						if (data.data.role_id && data.data.role_id === 1) {
+						if (data.data.role_id && data.data.role_id === 2) {
 							setToken(data.data.token);
 							navigate('/dashboard');
-						} else if (data.data.role_id && data.data.role_id === 2) {
+						} else if (data.data.role_id && data.data.role_id === 1) {
 							setToken(data.data.token);
 							navigate('/candidate');
 						}
@@ -73,9 +73,7 @@ function RightContent({ setToken }) {
 						</span>
 					</Form.Item>
 				</Form>
-				<span className='hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-font-weight-400 hp-mr-4'>
-					Don't have an account?{' '}
-				</span>
+				<span>Don't have an account? </span>
 				<Link to='/' style={{ color: 'blue' }}>
 					Sign up here
 				</Link>
