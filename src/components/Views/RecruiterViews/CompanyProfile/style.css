@@ -20,3 +20,20 @@
 .button-actions-div button {
 	margin: 2em;
 }
+
+.profileLabel {
+	font-weight: 500;
+	margin-top: 1em;
+}
+
+.profileValue {
+	margin-top: 1em;
+}
+
+.contentBox {
+	background-color: white;
+	padding: 1em;
+	margin-top: 1em;
+	width: 90%;
+	margin-bottom: 2em;
+}
