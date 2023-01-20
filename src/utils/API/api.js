@@ -147,6 +147,22 @@ export default class API {
 		}
 	}
 
+	static async getAllJobCategories(token) {
+		console.log('JobCategory API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(`api/vacancy/getjobcategory`, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
 	static async getDashboardCounts(token) {
 		console.log('Dashboard API reached');
 		const config = {
@@ -229,6 +245,22 @@ export default class API {
 		};
 		try {
 			const data = await apiClient.get(`api/recrutirer`, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
+	static async getVacancyInfo(token) {
+		console.log('vacancy info API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(`api/vacancy`, config);
 			return Promise.resolve(data);
 		} catch (error) {
 			console.error('errResp', error);

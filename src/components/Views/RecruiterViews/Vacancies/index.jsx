@@ -10,10 +10,13 @@ function Vacancies({ updateRender, token }) {
 	const [countryOptions, setCountryOptions] = useState([]);
 	const [cityOptions, setCityOptions] = useState([]);
 	const [stateOptions, setStateOptions] = useState([]);
+	const [jobCategoryOptions, setJobCategoryOptions] = useState([]);
+
 	function createVacancy(values, token) {
 		API.createVacancy(values, token)
 			.then((res) => {
 				console.log('create vacancy API res: ', res);
+				return;
 			})
 			.catch((err) => {
 				console.log('e', err);
@@ -32,7 +35,7 @@ function Vacancies({ updateRender, token }) {
 		});
 	};
 
-	const fetchState = (countryId, token, permanent = false) => {
+	const fetchState = (countryId, token) => {
 		API.getAllSates(countryId, token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
@@ -44,7 +47,7 @@ function Vacancies({ updateRender, token }) {
 		});
 	};
 
-	const fetchCities = (stateId, token, permanent = false) => {
+	const fetchCities = (stateId, token) => {
 		API.getAllCities(stateId, token).then(({ data, status }) => {
 			let options = data.map((key) => {
 				return {
@@ -56,8 +59,21 @@ function Vacancies({ updateRender, token }) {
 		});
 	};
 
+	const fetchJobCategories = (token) => {
+		API.getAllJobCategories(token).then(({ data }) => {
+			let options = data.map((key) => {
+				return {
+					label: key.name,
+					value: key.id
+				};
+			});
+			setJobCategoryOptions(options);
+		});
+	};
+
 	useEffect(() => {
-		fetchCountries(token);
+		fetchCountries();
+		fetchJobCategories();
 	}, []);
 
 	return (
@@ -65,37 +81,36 @@ function Vacancies({ updateRender, token }) {
 			<div id='vacancy-form-div'>
 				<Formik
 					initialValues={{
-						job_role: '',
-						job_desc: '',
-						vacancy_count: '',
-						job_category: '',
-						job_type: '',
+						jobtitle: '',
+						jobdescription: '',
+						numberofvacancy: '',
+						jobcategory: '',
+						jobtype: '',
 						city: '',
 						state: '',
 						country: '',
-						exp_level: '',
-						exp_required_min: '',
-						exp_required_max: '',
-						salary_currency: '',
-						salary_exp_min: '',
-						salary_exp_max: '',
+						experiencelevel: '',
+						minimumexperience: '',
+						maximumexperience: '',
+						currency: '',
+						expectedsalaryfrom: '',
+						expectedsalaryto: '',
 						skills: []
 					}}
 					validate={(values) => {
 						const errors = {};
-						if (!values.job_role) {
+						if (!values.jobtitle) {
 							errors.company_name = 'Required';
-						} else if (!values.salary_exp_min) {
+						} else if (!values.expectedsalaryfrom) {
 							errors.company_name = 'Required';
 						} else if (values.skills.length === 0) {
 							errors.skills = 'Required';
-						} else if (!values.exp_level) {
-							errors.exp_level = 'Required';
+						} else if (!values.experiencelevel) {
+							errors.experiencelevel = 'Required';
 						}
 						return errors;
 					}}
 					onSubmit={(values) => {
-						console.log('jackkkk!', values);
 						createVacancy(values, token);
 						updateRender('6');
 					}}
@@ -118,9 +133,9 @@ function Vacancies({ updateRender, token }) {
 													</span>
 												</>
 											}
-											name='job_role'
+											name='jobtitle'
 										>
-											<Input name='job_role' />
+											<Input name='jobtitle' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -128,8 +143,8 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Job Description:' name='job_desc'>
-											<TextArea rows={5} name='job_desc' />
+										<Form.Item label='Job Description:' name='jobdescription'>
+											<TextArea rows={5} name='jobdescription' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -139,9 +154,9 @@ function Vacancies({ updateRender, token }) {
 									<Col md={12} span={24}>
 										<Form.Item
 											label='Number of Vacancies:'
-											name='vacancy_count'
+											name='numberofvacancy'
 										>
-											<Input name='vacancy_count' />
+											<Input name='numberofvacancy' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -149,8 +164,11 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Job Category:' name='job_category'>
-											<Input name='job_category' />
+										<Form.Item label='Job Category:' name='jobcategory'>
+											<Select
+												name='jobcategory'
+												options={jobCategoryOptions}
+											></Select>
 										</Form.Item>
 									</Col>
 								</Row>
@@ -158,8 +176,8 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Job Type:' name='job_type'>
-											<Input name='job_type' />
+										<Form.Item label='Job Type:' name='jobtype'>
+											<Input name='jobtype' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -208,9 +226,18 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Experience Level:' name='exp_level'>
-											<span style={{ color: 'red', fontSize: '2em' }}>*</span>
-											<Input name='exp_level' />
+										<Form.Item
+											label={
+												<>
+													Experience Level:
+													<span style={{ color: 'red', fontSize: '1em' }}>
+														*
+													</span>
+												</>
+											}
+											name='experiencelevel'
+										>
+											<Input name='experiencelevel' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -219,10 +246,17 @@ function Vacancies({ updateRender, token }) {
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
 										<Form.Item
-											label='Minimum Experience:'
-											name='exp_required_min'
+											label={
+												<>
+													Min. Experience:
+													<span style={{ color: 'red', fontSize: '1em' }}>
+														*
+													</span>
+												</>
+											}
+											name='minimumexperience'
 										>
-											<Input name='exp_required_min' />
+											<Input name='minimumexperience' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -231,10 +265,10 @@ function Vacancies({ updateRender, token }) {
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
 										<Form.Item
-											label='Maximum Experience:'
-											name='exp_required_max'
+											label='Max. Experience:'
+											name='maximumexperience'
 										>
-											<Input name='exp_required_max' />
+											<Input name='maximumexperience' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -242,8 +276,12 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Currency:' name='salary_currency'>
-											<Input name='salary_currency' />
+										<Form.Item label='Currency:' name='currency'>
+											<Select name='currency'>
+												<Select.Option value='1'>INR</Select.Option>
+												<Select.Option value='2'>USD</Select.Option>
+												<Select.Option value='3'>Other</Select.Option>
+											</Select>
 										</Form.Item>
 									</Col>
 								</Row>
@@ -251,9 +289,18 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Min. Salary:' name='salary_exp_min'>
-											<span style={{ color: 'red', fontSize: '2em' }}>*</span>
-											<Input name='salary_exp_min' />
+										<Form.Item
+											label={
+												<>
+													Min. Salary:
+													<span style={{ color: 'red', fontSize: '1em' }}>
+														*
+													</span>
+												</>
+											}
+											name='expectedsalaryfrom'
+										>
+											<Input name='expectedsalaryfrom' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -261,8 +308,8 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Max. Salary:' name='salary_exp_max'>
-											<Input name='salary_exp_max' />
+										<Form.Item label='Max. Salary:' name='expectedsalaryto'>
+											<Input name='expectedsalaryto' />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -270,8 +317,17 @@ function Vacancies({ updateRender, token }) {
 							<Col span={24}>
 								<Row gutter={[16]}>
 									<Col md={12} span={24}>
-										<Form.Item label='Skills:' name='skills'>
-											<span style={{ color: 'red', fontSize: '2em' }}>*</span>
+										<Form.Item
+											label={
+												<>
+													Skills:
+													<span style={{ color: 'red', fontSize: '1em' }}>
+														*
+													</span>
+												</>
+											}
+											name='skills'
+										>
 											<Input name='skills' />
 										</Form.Item>
 									</Col>
