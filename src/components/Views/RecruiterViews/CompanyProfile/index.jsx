@@ -3,12 +3,7 @@ import { Form, Input, SubmitButton, ResetButton } from 'formik-antd';
 import { Formik } from 'formik';
 import { Divider, Row, Col } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import {
-	LinkedinOutlined,
-	GithubOutlined,
-	FacebookOutlined,
-	TwitterOutlined
-} from '@ant-design/icons';
+import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 import './style.css';
 import API from '../../../../utils/API/api';
 const { TextArea } = Input;
@@ -47,15 +42,6 @@ function CompanyProfile({ token, updateRender }) {
 						facebook: '',
 						glassdoor: '',
 						crunchbase: ''
-					}}
-					validate={(values) => {
-						const errors = {};
-						if (!values.companyname) {
-							errors.companyname = 'Required';
-						} else if (!values.website) {
-							errors.companyname = 'Required';
-						}
-						return errors;
 					}}
 					onSubmit={(values) => {
 						createCompanyProfile(values);
@@ -157,12 +143,12 @@ function CompanyProfile({ token, updateRender }) {
 									</Col>
 									<Col span={12}>
 										<Form.Item label='Glassdoor:' name='glassdoor'>
-											<Input name='glassdoor' />
+											<Input addonBefore='https://' name='glassdoor' />
 										</Form.Item>
 									</Col>
 									<Col span={12}>
 										<Form.Item label='CrunchBase:' name='crunchbase'>
-											<Input name='crunchbase' />
+											<Input addonBefore='https://' name='crunchbase' />
 										</Form.Item>
 									</Col>
 								</Row>

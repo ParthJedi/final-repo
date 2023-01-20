@@ -219,4 +219,20 @@ export default class API {
 			return Promise.resolve(null);
 		}
 	}
+
+	static async getCompanyProfile(token) {
+		console.log('company profile data API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.get(`api/recrutirer`, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
 }
