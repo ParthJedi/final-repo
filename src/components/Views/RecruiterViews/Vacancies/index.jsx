@@ -74,7 +74,6 @@ function Vacancies({ updateRender, token }) {
 	const fetchJobCategories = (token) => {
 		API.getAllJobCategories(token)
 			.then(({ data }) => {
-				console.log('test options>>>>>>>>>>>>>>>', data);
 				let options = data.map((key) => {
 					return {
 						label: key.name,
@@ -84,7 +83,6 @@ function Vacancies({ updateRender, token }) {
 				setJobCategoryOptions(options);
 			})
 			.catch((err) => {
-				console.log('>>>>>>>>>>>>>>>>>>Error hua hai bhai');
 				console.log('e', err);
 			});
 	};

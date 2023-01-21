@@ -120,10 +120,15 @@ function EditProfile({ token, updateRender }) {
 		fetchProfileData(token);
 	}, []);
 
-	function createCandidate(formData) {
-		API.createProfile(formData, token).then(({ data, status }) => {
-			//setProfileData(formData);
-		});
+	function createCandidate(formData, token) {
+		API.createProfile(formData, token)
+			.then(({ data, status }) => {
+				//setProfileData(formData);
+				return;
+			})
+			.catch((err) => {
+				console.log('e', err);
+			});
 		console.log('hey', formData);
 	}
 	return (
@@ -202,7 +207,7 @@ function EditProfile({ token, updateRender }) {
 					return errors;
 				}}
 				onSubmit={(values) => {
-					createCandidate(values);
+					createCandidate(values, token);
 					updateRender('3');
 				}}
 			>
@@ -443,8 +448,8 @@ function EditProfile({ token, updateRender }) {
 												}
 												name='permanent_state_id'
 											>
-												<Select 
-													name='permanent_state_id' 
+												<Select
+													name='permanent_state_id'
 													options={perStateOptions}
 													onSelect={(value, event) =>
 														fetchCities(value, token, true)
@@ -464,8 +469,10 @@ function EditProfile({ token, updateRender }) {
 												}
 												name='permanent_city_id'
 											>
-												<Select name='permanent_city_id' options={perCityOptions}>
-												</Select>
+												<Select
+													name='permanent_city_id'
+													options={perCityOptions}
+												></Select>
 											</Form.Item>
 										</Col>
 										<Col md={12} span={24}>

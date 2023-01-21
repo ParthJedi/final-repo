@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Divider, Button } from 'antd';
 import API from '../../../../utils/API/api';
 
-function ViewProfile({token, updateRender}) {
+function ViewProfile({ token, updateRender }) {
 	const [profileData, setProfileData] = useState([]);
 
 	const fetchProfileData = (token) => {
@@ -52,7 +52,13 @@ function ViewProfile({token, updateRender}) {
 			</Col>
 			<Col span={24} md={12}>
 				<p></p>
-				<Button onClick={() => {updateRender('2')}}>Edit</Button>
+				<Button
+					onClick={() => {
+						updateRender('2');
+					}}
+				>
+					Edit
+				</Button>
 			</Col>
 		</Row>
 	);
