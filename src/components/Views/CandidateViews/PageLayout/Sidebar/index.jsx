@@ -29,7 +29,7 @@ function SidebarContent({ updateRender }) {
 					{
 						icon: <UserSwitchOutlined />,
 						label: 'My Profile',
-						onClick: () => updateRender('2')
+						onClick: () => updateRender('3')
 						// children: [
 						// 			{
 						// 				key: '2',
