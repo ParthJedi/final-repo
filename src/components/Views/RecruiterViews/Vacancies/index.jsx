@@ -24,7 +24,7 @@ function Vacancies({ updateRender, token }) {
 	}
 
 	const fetchCountries = (token) => {
-		API.getAllCountries(token).then(({ data, status }) => {
+		API.getAllCountries(token).then(({ data }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
@@ -36,7 +36,7 @@ function Vacancies({ updateRender, token }) {
 	};
 
 	const fetchState = (countryId, token) => {
-		API.getAllSates(countryId, token).then(({ data, status }) => {
+		API.getAllSates(countryId, token).then(({ data }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
@@ -48,7 +48,7 @@ function Vacancies({ updateRender, token }) {
 	};
 
 	const fetchCities = (stateId, token) => {
-		API.getAllCities(stateId, token).then(({ data, status }) => {
+		API.getAllCities(stateId, token).then(({ data }) => {
 			let options = data.map((key) => {
 				return {
 					label: key.name,
@@ -192,7 +192,7 @@ function Vacancies({ updateRender, token }) {
 											<Select
 												name='country'
 												options={countryOptions}
-												onSelect={(value, event) => fetchState(value, token)}
+												onSelect={(value) => fetchState(value, token)}
 											></Select>
 										</Form.Item>
 									</Col>
@@ -205,7 +205,7 @@ function Vacancies({ updateRender, token }) {
 											<Select
 												name='state'
 												options={stateOptions}
-												onSelect={(value, event) => fetchCities(value, token)}
+												onSelect={(value) => fetchCities(value, token)}
 											></Select>
 										</Form.Item>
 									</Col>
