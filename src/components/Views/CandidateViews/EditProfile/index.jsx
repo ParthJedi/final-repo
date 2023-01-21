@@ -129,7 +129,6 @@ function EditProfile({ token, updateRender }) {
 			.catch((err) => {
 				console.log('e', err);
 			});
-		console.log('hey', formData);
 	}
 	return (
 		<>

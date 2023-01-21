@@ -16,7 +16,6 @@ function CompanyProfile({ token, updateRender }) {
 		API.createCompany(companyData, token)
 			.then(({ data, status }) => {
 				if (status === 200 && Object.keys(data.data) && data.status === 1) {
-					console.log('success!', data);
 					return;
 				} else navigate('/dashboard');
 			})

@@ -66,7 +66,7 @@ function VacancyTable({ token }) {
 		});
 	}
 	useEffect(() => {
-		getVacancyData(token);
+		// getVacancyData(token);
 	}, []);
 	return (
 		<>
