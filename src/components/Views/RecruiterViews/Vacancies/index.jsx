@@ -24,51 +24,68 @@ function Vacancies({ updateRender, token }) {
 	}
 
 	const fetchCountries = (token) => {
-		API.getAllCountries(token).then(({ data }) => {
-			let options = data.map((key) => {
-				return {
-					label: key.name,
-					value: key.id
-				};
+		API.getAllCountries(token)
+			.then(({ data }) => {
+				let options = data.map((key) => {
+					return {
+						label: key.name,
+						value: key.id
+					};
+				});
+				setCountryOptions(options);
+			})
+			.catch((err) => {
+				console.log('e', err);
 			});
-			setCountryOptions(options);
-		});
 	};
 
 	const fetchState = (countryId, token) => {
-		API.getAllSates(countryId, token).then(({ data }) => {
-			let options = data.map((key) => {
-				return {
-					label: key.name,
-					value: key.id
-				};
+		API.getAllSates(countryId, token)
+			.then(({ data }) => {
+				let options = data.map((key) => {
+					return {
+						label: key.name,
+						value: key.id
+					};
+				});
+				setStateOptions(options);
+			})
+			.catch((err) => {
+				console.log('e', err);
 			});
-			setStateOptions(options);
-		});
 	};
 
 	const fetchCities = (stateId, token) => {
-		API.getAllCities(stateId, token).then(({ data }) => {
-			let options = data.map((key) => {
-				return {
-					label: key.name,
-					value: key.id
-				};
+		API.getAllCities(stateId, token)
+			.then(({ data }) => {
+				let options = data.map((key) => {
+					return {
+						label: key.name,
+						value: key.id
+					};
+				});
+				setCityOptions(options);
+			})
+			.catch((err) => {
+				console.log('e', err);
 			});
-			setCityOptions(options);
-		});
 	};
 
 	const fetchJobCategories = (token) => {
-		API.getAllJobCategories(token).then(({ data }) => {
-			let options = data.map((key) => {
-				return {
-					label: key.name,
-					value: key.id
-				};
+		API.getAllJobCategories(token)
+			.then(({ data }) => {
+				console.log('test options>>>>>>>>>>>>>>>', data);
+				let options = data.map((key) => {
+					return {
+						label: key.name,
+						value: key.id
+					};
+				});
+				setJobCategoryOptions(options);
+			})
+			.catch((err) => {
+				console.log('e', err);
 			});
-			setJobCategoryOptions(options);
-		});
 	};
 
 	useEffect(() => {
