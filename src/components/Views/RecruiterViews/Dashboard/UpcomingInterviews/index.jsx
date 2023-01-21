@@ -22,8 +22,8 @@ function UpcomingInterviews({ token }) {
 			<Card
 				title='Upcoming Interviews'
 				style={{
-					width: '90%',
-					marginLeft: '5%'
+					width: '85%',
+					marginLeft: '10%'
 				}}
 			>
 				{interviewList.length > 0 ? (

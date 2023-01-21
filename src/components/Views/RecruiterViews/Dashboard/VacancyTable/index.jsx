@@ -61,28 +61,44 @@ function VacancyTable({ token }) {
 
 	function getVacancyData(token) {
 		API.getVacancyData(token).then((res) => {
-			console.log('vacancy data: ', res);
-			// setVacancyData(res.data)
+			console.log('vacancy data: >>>>>>>>>>>>>>>>>>>>>>>>>>>>', res.data);
+			setVacancyData(res.data);
 		});
 	}
+
 	useEffect(() => {
-		// getVacancyData(token);
+		getVacancyData(token);
 	}, []);
+
+	const mainData = [];
+	vacancyData.map((item, index) => {
+		const vacancyObject = {
+			key: index,
+			id: index + 1,
+			jobTitle: item.jobtitle,
+			vacancies: item.numberofvacancy,
+			experience: item.experiencelevel + ' years'
+		};
+		mainData.push(vacancyObject);
+	});
 	return (
 		<>
 			<Card
 				title='Pending Vacancies'
 				style={{
-					width: '100%'
+					width: '105%'
 				}}
 			>
 				<Table
+					fixed={true}
 					columns={columns}
-					dataSource={vacancyData}
+					dataSource={mainData.length > 0 ? mainData : vacancyData}
 					pagination={false}
-					// pagination={{
-					// 	position: [top, bottom]
-					// }}
+					style={{
+						height: '20em',
+						overflowY: 'scroll',
+						overflowX: 'visible'
+					}}
 				/>
 			</Card>
 		</>
