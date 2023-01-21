@@ -44,6 +44,21 @@ export default class API {
 		}
 	}
 
+	static async updateCompany(companyData, token) {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.put(`api/recrutirer`, companyData, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
 	static async createVacancy(vacancyData, token) {
 		const config = {
 			headers: {

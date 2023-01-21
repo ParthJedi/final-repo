@@ -11,8 +11,7 @@ const { TextArea } = Input;
 function CompanyProfile({ token, updateRender }) {
 	const navigate = useNavigate();
 
-	function createCompanyProfile(companyData) {
-		console.log('function call with company data', companyData);
+	function createCompanyProfile(companyData, token) {
 		API.createCompany(companyData, token)
 			.then(({ data, status }) => {
 				if (status === 200 && Object.keys(data.data) && data.status === 1) {
@@ -43,14 +42,14 @@ function CompanyProfile({ token, updateRender }) {
 						crunchbase: ''
 					}}
 					onSubmit={(values) => {
-						createCompanyProfile(values);
+						createCompanyProfile(values, token);
 						updateRender('5');
 					}}
 				>
 					<Form layout='vertical' className='company-form'>
 						<Row>
 							<Divider>
-								<h1>Company Profile</h1>
+								<h1>Create Company Profile</h1>
 								<h6>Add your company details like Name, Size, etc</h6>
 							</Divider>
 							<Col span={24}>
