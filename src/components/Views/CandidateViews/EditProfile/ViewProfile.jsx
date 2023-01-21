@@ -3,12 +3,12 @@ import { Row, Col, Divider, Button } from 'antd';
 import API from '../../../../utils/API/api';
 
 function ViewProfile({ token, updateRender }) {
-	const [profileData, setProfileData] = useState([]);
+	const [profileData, setProfileData] = useState('');
 
 	const fetchProfileData = (token) => {
 		API.getProfileData(token).then(({ data, status }) => {
 			setProfileData(data);
-		});
+		}).then(() => {console.log(profileData)});
 	};
 
 	useEffect(() => {
@@ -17,6 +17,7 @@ function ViewProfile({ token, updateRender }) {
 
 	return (
 		<Row className='profile'>
+			{(profileData) ?
 			<Col span={24} md={12}>
 				<h2>Personal Information</h2>
 				<p>First Name : {profileData.first_name}</p>
@@ -49,7 +50,8 @@ function ViewProfile({ token, updateRender }) {
 						<p>Twitter: {profileData.twitter_link}</p>
 					</Col>
 				</Row>
-			</Col>
+			</Col> : ''
+			}
 			<Col span={24} md={12}>
 				<p></p>
 				<Button
@@ -57,7 +59,7 @@ function ViewProfile({ token, updateRender }) {
 						updateRender('2');
 					}}
 				>
-					Edit
+					{(profileData) ? 'Edit' : 'Create Profile'}
 				</Button>
 			</Col>
 		</Row>
