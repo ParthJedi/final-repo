@@ -84,13 +84,14 @@ function Vacancies({ updateRender, token }) {
 				setJobCategoryOptions(options);
 			})
 			.catch((err) => {
+				console.log('>>>>>>>>>>>>>>>>>>Error hua hai bhai');
 				console.log('e', err);
 			});
 	};
 
 	useEffect(() => {
-		fetchCountries();
-		fetchJobCategories();
+		fetchCountries(token);
+		fetchJobCategories(token);
 	}, []);
 
 	return (
