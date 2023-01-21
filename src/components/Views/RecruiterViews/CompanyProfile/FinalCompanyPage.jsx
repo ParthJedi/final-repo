@@ -26,7 +26,6 @@ export default function FinalCompanyPage({ updateRender, token }) {
 	function updateCompanyProfile(values, token) {
 		API.updateCompany(values, token)
 			.then(({ status }) => {
-				console.log('teahhhha', values);
 				if (status === 200) {
 					console.log('Profile updated!');
 					setEditFlag(false);
