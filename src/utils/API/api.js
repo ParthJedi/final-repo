@@ -91,6 +91,22 @@ export default class API {
 		}
 	}
 
+	static async updateProfile(profileData, token) {
+		console.log('Update Profile API reached');
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.put(`api/candidate`, profileData, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
 	static async getAllCountries(token) {
 		console.log('Country API reached');
 		const config = {

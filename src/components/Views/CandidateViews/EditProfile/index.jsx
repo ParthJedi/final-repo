@@ -123,18 +123,36 @@ function EditProfile({ token, updateRender }) {
 	function createCandidate(formData, token) {
 		API.createProfile(formData, token)
 			.then(({ data, status }) => {
-				//setProfileData(formData);
-				return;
+				setProfileData(formData);
+				updateRender('3');
 			})
 			.catch((err) => {
 				console.log('e', err);
 			});
-		console.log('hey', formData);
+	}
+
+	function updateProfile(formData, token) {
+		API.updateProfile(formData, token)
+			.then(({ data, status }) => {
+				setProfileData(formData);
+				updateRender('3');
+			})
+			.catch((err) => {
+				console.log('e', err);
+			});
 	}
 	return (
 		<>
 			<Formik
-				initialValues={profileData}
+				initialValues={
+					(profileData) ? profileData : {
+						first_name:'',
+						last_name:'',
+						current_country_id:'',
+						current_state_id:'',
+						current_city_id:''
+					}
+				}
 				enableReinitialize
 				validate={(values) => {
 					const errors = {};
@@ -143,12 +161,6 @@ function EditProfile({ token, updateRender }) {
 					}
 					if (!values.last_name) {
 						errors.last_name = 'Last name is required';
-					}
-					if (!values.email) {
-						errors.email = 'Email is required';
-					}
-					if (!values.phone) {
-						errors.phone = 'Phone is required';
 					}
 					if (!values.current_country_id) {
 						errors.current_country = 'Country is required';
@@ -207,8 +219,7 @@ function EditProfile({ token, updateRender }) {
 					return errors;
 				}}
 				onSubmit={(values) => {
-					createCandidate(values, token);
-					updateRender('3');
+					(profileData) ? updateProfile(values, token) : createCandidate(values, token);
 				}}
 			>
 				<Form layout='vertical' className='candidate-form'>
@@ -246,32 +257,6 @@ function EditProfile({ token, updateRender }) {
 										name='last_name'
 									>
 										<Input name='last_name' />
-									</Form.Item>
-								</Col>
-								<Col md={12} span={24}>
-									<Form.Item
-										label={
-											<>
-												Email Address:
-												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
-											</>
-										}
-										name='email'
-									>
-										<Input name='email' type='email' />
-									</Form.Item>
-								</Col>
-								<Col md={12} span={24}>
-									<Form.Item
-										label={
-											<>
-												Phone Number:
-												<span style={{ color: 'red', fontSize: '1em' }}>*</span>
-											</>
-										}
-										name='phone'
-									>
-										<Input name='phone' type='tel' />
 									</Form.Item>
 								</Col>
 								<Col md={12} span={24}>
