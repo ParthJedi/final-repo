@@ -21,7 +21,7 @@ function RecruiterPageLayout({ token }) {
 		3: <Vacancies token={token} updateRender={updateRender} />,
 		4: <Candidates token={token} />,
 		5: <FinalCompanyPage token={token} updateRender={updateRender} />,
-		6: <FinalVacancyListings token={token} />
+		6: <FinalVacancyListings token={token} updateRender={updateRender} />
 	};
 
 	return (

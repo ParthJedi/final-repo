@@ -74,6 +74,21 @@ export default class API {
 		}
 	}
 
+	static async deleteVacancy(id, token) {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		};
+		try {
+			const data = await apiClient.delete(`api/vacancy`, id, config);
+			return Promise.resolve(data);
+		} catch (error) {
+			console.error('errResp', error);
+			return Promise.resolve(null);
+		}
+	}
+
 	static async getProfileData(token) {
 		console.log('Profile API reached');
 		const config = {
