@@ -29,6 +29,7 @@ export default function FinalCompanyPage({ updateRender, token }) {
 				if (status === 200) {
 					console.log('Profile updated!');
 					setEditFlag(false);
+					return;
 				}
 			})
 			.catch((err) => {

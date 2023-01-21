@@ -61,7 +61,7 @@ function VacancyTable({ token }) {
 
 	function getVacancyData(token) {
 		API.getVacancyData(token).then((res) => {
-			console.log('vacancy data: >>>>>>>>>>>>>>>>>>>>>>>>>>>>', res.data);
+			console.log('vacancy data: ', res.data);
 			setVacancyData(res.data);
 		});
 	}

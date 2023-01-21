@@ -5,6 +5,7 @@ import API from '../../../../../utils/API/api';
 
 function UpcomingInterviews({ token }) {
 	const [interviewList, setInterviewList] = useState([]);
+
 	function getUpcomingInterviews(token) {
 		API.getUpcomingInterviews(token)
 			.then((res) => {
@@ -14,9 +15,11 @@ function UpcomingInterviews({ token }) {
 				console.log('e', err);
 			});
 	}
+
 	useEffect(() => {
 		getUpcomingInterviews(token);
 	}, []);
+
 	return (
 		<>
 			<Card

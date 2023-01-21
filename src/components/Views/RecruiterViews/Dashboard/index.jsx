@@ -15,10 +15,10 @@ function DashboardContent({ token }) {
 	const [vacancies, setVacancies] = useState(0);
 	function getDashboardCounts(token) {
 		API.getDashboardCounts(token)
-			.then((res) => {
-				setInterviewsToday(res.data.interviewtodayCount);
-				setPendingInterviews(res.data.pendinginterviewCount);
-				setVacancies(res.data.numberofvacancyCount);
+			.then(({ data }) => {
+				setInterviewsToday(data.interviewtodayCount);
+				setPendingInterviews(data.pendinginterviewCount);
+				setVacancies(data.numberofvacancyCount);
 			})
 			.catch((err) => {
 				console.log('e', err);
