@@ -19,6 +19,7 @@ function Vacancies({ updateRender, token }) {
 					message: 'Vacancy Creation Successful!',
 					description: 'Vacancy Creation Successful!'
 				});
+				setTimeout(() => updateRender('6'), 2000);
 				return;
 			})
 			.catch((err) => {
@@ -131,7 +132,6 @@ function Vacancies({ updateRender, token }) {
 					}}
 					onSubmit={(values) => {
 						createVacancy(values, token);
-						updateRender('6');
 					}}
 				>
 					<Form layout='vertical' className='vacancy-form'>

@@ -19,6 +19,7 @@ function CompanyProfile({ token, updateRender }) {
 						message: 'Profile Creation Successful!',
 						description: 'Creation Successful!'
 					});
+					setTimeout(() => updateRender('5'), 2000);
 					return;
 				} else navigate('/dashboard');
 			})
@@ -47,7 +48,6 @@ function CompanyProfile({ token, updateRender }) {
 					}}
 					onSubmit={(values) => {
 						createCompanyProfile(values, token);
-						updateRender('5');
 					}}
 				>
 					<Form layout='vertical' className='company-form'>
