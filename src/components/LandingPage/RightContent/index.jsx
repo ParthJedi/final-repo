@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Form, Input, Button, Radio, Spin } from 'antd';
+import { Col, Form, Input, Button, Radio, Spin, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
 
@@ -30,10 +30,18 @@ function RightContent({ setToken }) {
 					if (status === 200 && data.status === 1) {
 						if (data.data.role_id && data.data.role_id === 2) {
 							setToken(data.data.token);
-							navigate('/dashboard');
+							notification.success({
+								message: 'Registration Successful!',
+								description: 'Registration Successful!'
+							});
+							setTimeout(() => navigate('/dashboard'), 1000);
 						} else if (data.data.role_id && data.data.role_id === 1) {
 							setToken(data.data.token);
-							navigate('/candidate');
+							notification.success({
+								message: 'Registration Successful!',
+								description: 'Registration Successful!'
+							});
+							setTimeout(() => navigate('/candidate'), 1000);
 						}
 					} else navigate('/');
 				})
