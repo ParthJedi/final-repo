@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, SubmitButton, ResetButton } from 'formik-antd';
 import { Formik } from 'formik';
-import { Divider, Row, Col } from 'antd';
+import { Divider, Row, Col, notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 import './style.css';
@@ -15,6 +15,10 @@ function CompanyProfile({ token, updateRender }) {
 		API.createCompany(companyData, token)
 			.then(({ data, status }) => {
 				if (status === 200 && Object.keys(data.data) && data.status === 1) {
+					notification.success({
+						message: 'Profile Creation Successful!',
+						description: 'Creation Successful!'
+					});
 					return;
 				} else navigate('/dashboard');
 			})
