@@ -14,12 +14,49 @@
 	right: 108px;
 }
 
-@media (max-width: 900px) {
+.mini-logo-item {
+	display: none;
+}
+
+@media (max-width: 950px) {
 	.background-img {
 		height: 286px;
+		margin: auto;
 		margin-top: 8em;
 		position: relative;
 		right: 100px;
+	}
+}
+
+@media (max-width: 899px) {
+	.background-img {
+		margin: auto;
+		position: relative;
+		right: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	.content-row {
+		width: 200vh;
+		padding: 2em;
+		height: 50vh;
+	}
+	.left-content-col {
+		display: none;
+	}
+	.right-content-col {
+		overflow: hidden;
+	}
+	.right-content-block {
+		width: 80vh;
+	}
+	.mini-logo-item {
+		display: block;
+	}
+	#praktika-logo {
+		width: 10em !important;
+		padding: 1em !important;
 	}
 }
 

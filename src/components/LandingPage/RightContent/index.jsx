@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Col, Form, Input, Button, Radio, Spin, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
+import PraktikaLogo from '../../Logo';
 
 function RightContent({ setToken }) {
 	const navigate = useNavigate();
@@ -66,6 +67,9 @@ function RightContent({ setToken }) {
 	}
 	return (
 		<Col className='right-content-block'>
+			<span className='mini-logo-item'>
+				<PraktikaLogo />
+			</span>
 			<div style={{ textAlign: 'justify' }}>
 				<h1>Create an account</h1>
 				<p>Create your account to start using Praktika.</p>

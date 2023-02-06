@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Col, Form, Input, Button, Spin, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../../utils/API/api';
+import PraktikaLogo from '../../Logo';
 
 function RightContent({ setToken }) {
 	const navigate = useNavigate();
@@ -56,6 +57,9 @@ function RightContent({ setToken }) {
 	}
 	return (
 		<Col className='right-content-block'>
+			<span className='mini-logo-item'>
+				<PraktikaLogo />
+			</span>
 			<div style={{ textAlign: 'justify' }}>
 				<h1>Welcome back!</h1>
 				<p>Please enter your login details.</p>
