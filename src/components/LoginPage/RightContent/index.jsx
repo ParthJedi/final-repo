@@ -43,7 +43,11 @@ function RightContent({ setToken }) {
 					} else navigate('/login');
 				})
 				.catch((err) => {
-					console.log('e', err);
+					console.error('e', err);
+					setLoading(false);
+					notification.error({
+						message: err
+					});
 					navigate('/login');
 				});
 		}
@@ -69,11 +73,11 @@ function RightContent({ setToken }) {
 					initialValues={{ remember: true }}
 				>
 					<Form.Item label='Email address :' className='hp-mb-16'>
-						<Input name='email' />
+						<Input name='email' defaultValue={'project@pesto.com'} />
 					</Form.Item>
 
 					<Form.Item label='Password :' className='hp-mb-8'>
-						<Input.Password name='password' />
+						<Input.Password name='password' defaultValue={11111111} />
 					</Form.Item>
 
 					<Form.Item>
